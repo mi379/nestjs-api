@@ -34,6 +34,12 @@ export class UserController {
     }
   }
 
+  @Get('hello')
+
+  responseWithHello():string{
+    return 'hello world'
+  }
+
   constructor(
     private user:UserService,
     private common:CommonService

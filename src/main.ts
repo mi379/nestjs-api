@@ -4,11 +4,13 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common'
 import { IoAdapter } from '@nestjs/platform-socket.io';
 
-(async function(){
+const origin = process.env.ORIGIN || "http://localhost:4200";
+
+(async function(origin:string){
 
   const app = await NestFactory.create(AppModule)
   
-  app.enableCors({origin:"http://localhost:4200"})
+  app.enableCors({origin})
   
   app.useGlobalPipes(new ValidationPipe({
     skipMissingProperties:false,
@@ -19,4 +21,7 @@ import { IoAdapter } from '@nestjs/platform-socket.io';
   	process.env.PORT || 3000
   )
   
-})()
+})
+(
+  origin
+)

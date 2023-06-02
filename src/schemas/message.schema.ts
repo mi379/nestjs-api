@@ -5,6 +5,6 @@ import { Types } from 'mongoose'
   @Prop() _id:Types.ObjectId
   @Prop() sender:Types.ObjectId
   @Prop() value:string
-  @Prop() groupId:string
+  @Prop() groupId:Types.ObjectId
   @Prop() accept:Types.ObjectId
 }

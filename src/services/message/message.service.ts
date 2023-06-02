@@ -53,7 +53,6 @@ import { InjectModel } from '@nestjs/mongoose'
         path:"$accept"
       }},
       {$project:{
-        groupId:0,
         sender:{
           _id:0
         },

@@ -1,16 +1,17 @@
 import { 
   Controller,
   Get,
+  Post,
   UseGuards,
   Request,
   Param,
-  InternalServerErrorException 
+  InternalServerErrorException, 
+  Body
 } from '@nestjs/common';
 
 import { AuthGuard } from '../../auth.guard'
 import { Types } from 'mongoose'
-import { Message } from '../../schemas/message.schema'
-import { CommonService } from '../../services/common/common.service'
+import { MessageDto } from '../../dto/message.dto'
 import { MessageService,Messages,Last } from '../../services/message/message.service'
 
 
@@ -63,8 +64,14 @@ export class MessageController {
         )
       }
     ])
-
   }
+
+  @Post('new') 
+
+  sendMessage(@Body() dto:MessageDto):MessageDto{
+    return dto
+  }
+  
 
   constructor(private messageService:MessageService){}
 }

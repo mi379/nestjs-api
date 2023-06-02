@@ -82,10 +82,7 @@ export class MessageController {
     })
 
     return await this.messageService.create({
-      groupId:dto.groupId,
-      value:dto.value,
-      sender,
-      accept
+      ...dto,sender,accept
     })
   }
   

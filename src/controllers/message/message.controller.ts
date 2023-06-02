@@ -66,7 +66,7 @@ export class MessageController {
     ])
   }
 
-  @Post('new') 
+  @Post('new') @UseGuards(AuthGuard)
 
   sendMessage(@Body() dto:MessageDto):MessageDto{
     return dto

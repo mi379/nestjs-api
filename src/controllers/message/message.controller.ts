@@ -68,8 +68,8 @@ export class MessageController {
 
   @Post('new') @UseGuards(AuthGuard)
 
-  sendMessage(@Body() dto:MessageDto):MessageDto{
-    return dto
+  sendMessage(@Body() dto:MessageDto,@Request() request):string{
+    return request.user._id
   }
   
 

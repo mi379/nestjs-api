@@ -9,10 +9,6 @@ import { InjectModel } from '@nestjs/mongoose'
 
   constructor(@InjectModel('Message') private message: Model<Message>){}
 
-  // jika sebuah async function wajib mengembalikan dari type Promise,
-  // maka async function yang mengembalikan sebuah Promise function,
-  // memiliki return type : Promise<Promise function return type>
-
   async getAllMessage<Type>($or:[Type,Type]):Promise<Messages>{
     return this.message.aggregate([
       {$match:{
@@ -67,13 +63,26 @@ import { InjectModel } from '@nestjs/mongoose'
       }}
     ])
   }
+
+  async create(params:New):Promise<Message>{
+    var message = new this.message(params)
+    return message.save()
+  }
 }
 
 
 export type Messages = Omit<Message,"groupId">[]
+
+
 
 export type Last = Pick<Message,"_id"|"value"> & {
   sender:Omit<Profile,"_id">,
   accept:Omit<Profile,"_id">,
 }
 
+interface New{
+  groupId:string,
+  value:string,
+  sender:Types.ObjectId,
+  accept:Types.ObjectId
+}

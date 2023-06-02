@@ -9,6 +9,7 @@ import {
   Body
 } from '@nestjs/common';
 
+import { Message } from '../../schemas/message.schema'
 import { AuthGuard } from '../../auth.guard'
 import { Types } from 'mongoose'
 import { MessageDto } from '../../dto/message.dto'
@@ -22,7 +23,7 @@ export class MessageController {
 
   @Get('all/:_id') @UseGuards(AuthGuard)
   
-  async getAllMessage(@Request() req,@Param('_id') _id:string):Promise<Messages>{
+  async getAllMessage(@Request() req:Request,@Param('_id') _id:string):Promise<Messages>{
     if(!Types.ObjectId.isValid(req.user._id) || !Types.ObjectId.isValid(_id)){
       throw new InternalServerErrorException()
     }
@@ -47,7 +48,7 @@ export class MessageController {
 
   @Get('recently') @UseGuards(AuthGuard)
 
-  async GetRecentlyMessage(@Request() request):Promise<Last[]>{ 	
+  async GetRecentlyMessage(@Request() request:Request):Promise<Last[]>{ 	
     if(!Types.ObjectId.isValid(request.user._id)){
       throw new InternalServerErrorException()
     }
@@ -68,8 +69,23 @@ export class MessageController {
 
   @Post('new') @UseGuards(AuthGuard)
 
-  sendMessage(@Body() dto:MessageDto,@Request() request):string{
-    return request.user._id
+  async createNewMessage(@Body() dto:MessageDto,@Request() request:Request):Promise<Message>{
+    if(!Types.ObjectId.isValid(request.user._id) || !Types.ObjectId.isValid(dto.accept)){
+      throw new InternalServerErrorException()
+    }
+    
+    let[sender,accept] = [request.user._id,dto.accept].map(_id => {
+      return new Types.ObjectId(
+        _id
+      )
+    })
+
+    return await this.messageService.create({
+      groupId:dto.groupId,
+      value:dto.value,
+      sender,
+      accept
+    })
   }
   
 
@@ -88,3 +104,8 @@ interface Criteria{
   accept:Types.ObjectId
 }
 
+interface Request{
+  user:{
+    _id:string
+  }
+}

@@ -81,7 +81,7 @@ export type Last = Pick<Message,"_id"|"value"> & {
 }
 
 interface New{
-  groupId:string,
+  groupId:number,
   value:string,
   sender:Types.ObjectId,
   accept:Types.ObjectId

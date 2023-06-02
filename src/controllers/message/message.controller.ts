@@ -70,9 +70,9 @@ export class MessageController {
   @Post('new') @UseGuards(AuthGuard)
 
   async createNewMessage(@Body() dto:MessageDto,@Request() request:Request):Promise<Message>{
-    if(!Types.ObjectId.isValid(request.user._id) || !Types.ObjectId.isValid(dto.accept)){
-      throw new InternalServerErrorException()
-    }
+    // if(!Types.ObjectId.isValid(request.user._id) || !Types.ObjectId.isValid(dto.accept)){
+    //   throw new InternalServerErrorException()
+    // }
     
     let[sender,accept] = [request.user._id,dto.accept].map(_id => {
       return new Types.ObjectId(
@@ -89,7 +89,9 @@ export class MessageController {
   }
   
 
-  constructor(private messageService:MessageService){}
+  constructor(
+    private messageService:MessageService
+  ){}
 }
 
 // parameter criteria to get all recently message

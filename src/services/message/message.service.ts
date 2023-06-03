@@ -9,7 +9,7 @@ import { InjectModel } from '@nestjs/mongoose'
 
   constructor(@InjectModel('Message') private message: Model<Message>){}
 
-  async getAllMessage<Filter>($or:[Filter,Filter]):Promise<Messages[]>{
+  async getAllMessage<Filter>($or:[Filter,Filter]):Promise<Messages>{
     return this.message.aggregate([
       {$match:{
         $or
@@ -76,11 +76,8 @@ import { InjectModel } from '@nestjs/mongoose'
 }
 
 
-export type Messages = Omit<Message,"groupId"> & {
-  send:boolean
-}
 
-
+export type Messages = (Omit<Message,"groupId"> & Status)[]
 
 export type Last = Pick<Message,"_id"|"value"> & {
   sender:Omit<Profile,"_id">,
@@ -92,4 +89,8 @@ interface New{
   value:string,
   sender:Types.ObjectId,
   accept:Types.ObjectId
+}
+
+interface Status{
+  send:true
 }

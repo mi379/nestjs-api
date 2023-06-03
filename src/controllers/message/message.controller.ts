@@ -74,15 +74,20 @@ export class MessageController {
       console.log('invalid credential...... ')
       throw new InternalServerErrorException()
     }
+
+    if(!Types.ObjectId.isValid(dto.groupId)) throw new InternalServerErrorException()
     
-    let[sender,accept] = [request.user._id,dto.accept].map(_id => {
+    let[sender,accept,group] = [request.user._id,dto.accept,dto.groupId].map(_id => {
       return new Types.ObjectId(
         _id
       )
     })
 
     return await this.messageService.create({
-      ...dto,sender,accept
+      ...dto,
+      sender,
+      accept,
+      groupId:group
     })
   }
   

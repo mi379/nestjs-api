@@ -9,10 +9,13 @@ import { InjectModel } from '@nestjs/mongoose'
 
   constructor(@InjectModel('Message') private message: Model<Message>){}
 
-  async getAllMessage<Type>($or:[Type,Type]):Promise<Messages>{
+  async getAllMessage<Filter>($or:[Filter,Filter]):Promise<Messages[]>{
     return this.message.aggregate([
       {$match:{
         $or
+      }},
+      {$addFields:{
+        send:true,
       }},
       {$project:{
       	groupId:0,
@@ -73,7 +76,9 @@ import { InjectModel } from '@nestjs/mongoose'
 }
 
 
-export type Messages = Omit<Message,"groupId">[]
+export type Messages = Omit<Message,"groupId"> & {
+  send:boolean
+}
 
 
 

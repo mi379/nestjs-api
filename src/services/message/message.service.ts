@@ -88,6 +88,7 @@ interface New{
   groupId:Types.ObjectId,
   sender:Types.ObjectId,
   accept:Types.ObjectId,
+  _id:Types.ObjectId,
   value:string,
 }
 

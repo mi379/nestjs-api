@@ -14,6 +14,7 @@ import { AuthGuard } from '../../auth.guard'
 import { Types } from 'mongoose'
 import { MessageDto } from '../../dto/message.dto'
 import { MessageService,Messages,Last } from '../../services/message/message.service'
+import { Type } from 'class-transformer';
 
 
 
@@ -75,19 +76,24 @@ export class MessageController {
       throw new InternalServerErrorException()
     }
 
-    if(!Types.ObjectId.isValid(dto.groupId)) throw new InternalServerErrorException()
-    
-    let[sender,accept,group] = [request.user._id,dto.accept,dto.groupId].map(_id => {
-      return new Types.ObjectId(
+    if(!Types.ObjectId.isValid(dto._id) || !Types.ObjectId.isValid(dto.groupId)){
+      throw new InternalServerErrorException()
+    }
+
+    var params:string[] = [request.user._id,dto.accept,dto._id,dto.groupId]
+
+    let [sender,accept,_id,groupId]:Types.ObjectId[] = params.map(
+      _id => new Types.ObjectId(
         _id
       )
-    })
+    )
 
     return await this.messageService.create({
       ...dto,
+      _id,
       sender,
       accept,
-      groupId:group
+      groupId
     })
   }
   

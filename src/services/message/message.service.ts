@@ -68,8 +68,7 @@ import { InjectModel } from '@nestjs/mongoose'
 
   async create(params:New):Promise<Message>{
     var message = new this.message({
-      _id:new Types.ObjectId(),
-      ...params,
+      ...params
     })
     return message.save()
   }

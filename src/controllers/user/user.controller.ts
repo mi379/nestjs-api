@@ -1,4 +1,4 @@
-import { Controller,Get,Post,Body,HttpException,UseGuards } from '@nestjs/common';
+import { Controller,Get,Post,Body,HttpException,Header } from '@nestjs/common';
 import { UserService,Detail } from '../../services/user/user.service'
 import { CommonService } from '../../services/common/common.service';
 import { LoginDto } from '../../dto/login.dto'
@@ -11,7 +11,7 @@ import { Types } from 'mongoose'
 
 export class UserController {
 
-  @Post('login') 
+  @Post('login') @Header('Access-Control-Allow-Origin', '*')
 
   async login(@Body() dto:LoginDto):Promise<Headers & Detail>{
 

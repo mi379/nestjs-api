@@ -9,7 +9,7 @@ const preview : string[] = ["https://angular-messenger-1npmhuusd-mi379.vercel.ap
 
   const app = await NestFactory.create(AppModule)
   
-  app.enableCors({origin:[process.env.ORIGIN,...preview]})
+  app.enableCors({origin:'*'})
   
   app.useGlobalPipes(new ValidationPipe({
     skipMissingProperties:false,

@@ -10,9 +10,9 @@ import { IoAdapter } from '@nestjs/platform-socket.io';
   const app = await NestFactory.create(AppModule)
   
   app.enableCors({
-    origin:true,
+    origin:"*",
     methods:'GET,POST',
-    allowedHeaders: 'Origin,Accept,Content-Type,Authorization,Access-Control-Allow-Origin'
+    allowedHeaders: 'Origin,Accept,Content-Type,Authorization'
   })
   
   app.useGlobalPipes(new ValidationPipe({

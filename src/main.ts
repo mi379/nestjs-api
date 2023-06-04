@@ -2,18 +2,14 @@ import { join } from 'path'
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common'
-import { IoAdapter } from '@nestjs/platform-socket.io';
 
+const preview : string[] = ["https://angular-messenger-1npmhuusd-mi379.vercel.app/login"];
 
-(async function(){
+(async function(preview:string[]){
 
   const app = await NestFactory.create(AppModule)
   
-  app.enableCors({
-    origin:"*",
-    methods:"GET,POST",
-    allowedHeaders: "Origin,Accept,Content-Type,Authorization"
-  })
+  app.enableCors({origin:[process.env.ORIGIN,...preview]})
   
   app.useGlobalPipes(new ValidationPipe({
     skipMissingProperties:false,
@@ -25,4 +21,6 @@ import { IoAdapter } from '@nestjs/platform-socket.io';
   )
   
 })
-
+(
+  preview
+)

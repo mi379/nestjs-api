@@ -11,8 +11,8 @@ import { IoAdapter } from '@nestjs/platform-socket.io';
   
   app.enableCors({
     origin:"*",
-    methods:'GET,POST',
-    allowedHeaders: 'Origin,Accept,Content-Type,Authorization'
+    methods:"GET,POST",
+    allowedHeaders: "Origin,Accept,Content-Type,Authorization"
   })
   
   app.useGlobalPipes(new ValidationPipe({

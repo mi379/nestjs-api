@@ -11,7 +11,7 @@ import { Types } from 'mongoose'
 
 export class UserController {
 
-  @Post('login') @Header('Access-Control-Allow-Origin', '*')
+  @Header('Access-Control-Allow-Origin', '*') @Post('login')
 
   async login(@Body() dto:LoginDto):Promise<Headers & Detail>{
 

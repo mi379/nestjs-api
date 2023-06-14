@@ -1,26 +1,26 @@
 import { join } from 'path'
 import { User } from './schemas/user.schema'
-import { Message } from './schemas/message.schema'
-import { ConfigService } from '@nestjs/config';
+import { MessageSchema } from './schemas/message.schema'
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { SchemaFactory } from '@nestjs/mongoose';
 import { MongooseModule } from '@nestjs/mongoose'
+import { LoggerMiddleware } from './middlewares/logger/logger.middleware'
 import { Module,NestModule,MiddlewareConsumer } from '@nestjs/common';
 import { UserController } from './controllers/user/user.controller';
 import { UserService } from './services/user/user.service';
-import { JwtModule,JwtService } from '@nestjs/jwt'
+import { JwtModule } from '@nestjs/jwt'
 import { ConfigModule } from '@nestjs/config';
 import { MessageController } from './controllers/message/message.controller';
 import { MessageService } from './services/message/message.service';
 import { CommonService } from './services/common/common.service';
-import { ChatGateway } from './gateways/chat/chat.gateway';
+import { EventsGateway } from './gateways/events/events.gateway';
 
 const environmentConfig = ConfigModule.forRoot()
 
 const user = SchemaFactory.createForClass(User)
 
 const message =  SchemaFactory.createForClass(
-  Message
+  MessageSchema
 )
 
 const dbConnection = MongooseModule.forRoot(
@@ -68,11 +68,14 @@ const jwtConfig = JwtModule.register({
     UserService,
     MessageService,
     CommonService,
-    ChatGateway
+    EventsGateway,
   ],
 })
 export class AppModule implements NestModule{
   configure(consumer: MiddlewareConsumer) {
-    // use middleware here
+    consumer.apply(LoggerMiddleware)
+      .forRoutes(
+        '*'
+      )
   }
 }

@@ -9,8 +9,9 @@ import { Types } from 'mongoose'
 @Controller('user') 
 
 export class UserController {
+ 
 
-  async login(@Body() dto:LoginDto):Promise<Headers & Detail>{
+  @Post('login') async login(@Body() dto:LoginDto):Promise<Headers & Detail>{
 
     try{
       let [result] = await this.user.login(dto)

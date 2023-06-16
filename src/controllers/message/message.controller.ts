@@ -1,6 +1,7 @@
 import { 
   Controller,
   Get,
+  Put,
   Post,
   UseGuards,
   Request,
@@ -13,9 +14,9 @@ import {
 
 import { Types } from 'mongoose'
 import { AuthGuard } from '../../auth.guard'
+import { ReadDto } from '../../dto/read.dto'
 import { MessageDto } from '../../dto/message.dto'
 import { EventsGateway } from '../../gateways/events/events.gateway'
-import { MessageSchema } from '../../schemas/message.schema'
 import { Doc } from '../../services/message/message.service'
 import { MessageService,Last,Created } from '../../services/message/message.service'
 
@@ -37,7 +38,7 @@ export class MessageController {
     })
 
     try{
-      return await this.messageService.getAllMessage<Criteria>(
+      return await this.message.getAllMessage<Criteria>(
         [
           {
             sender: user,
@@ -64,7 +65,7 @@ export class MessageController {
     }
 
     try{
-      return await this.messageService.getRecently<C1,C2>(
+      return await this.message.getRecently<C1,C2>(
         [
           {
             sender:new Types.ObjectId(
@@ -104,7 +105,7 @@ export class MessageController {
     )
     
     try{
-      var result:Created = await this.messageService.create({
+      var result:Created = await this.message.create({
         ...dto,
         groupId,
         sender,
@@ -121,12 +122,40 @@ export class MessageController {
       new Logger('ERROR').error(error.message)
       throw new InternalServerErrorException()
     }
-
   }
   
+  @Put('new') @UseGuards(AuthGuard)
+
+  async updateReadStatus(@Body() dto:ReadDto):Promise<void>{
+    var {_id,...options}:ReadDto = dto
+
+    if(!Types.ObjectId.isValid(dto._id)){
+      throw new InternalServerErrorException()
+    }
+
+    var [__id] : Types.ObjectId[] = [_id].map(
+      el => new Types.ObjectId(
+        el
+      )
+    ) 
+    
+    try{
+      await this.message.updateReadStatus(
+        __id,options
+      )
+
+      this.gateway.onReadByOther(
+        _id
+      )
+    }
+    catch(error:any){
+      new Logger('ERROR').error(error.message)
+      throw new InternalServerErrorException()
+    }
+  }
 
   constructor(
-    private messageService:MessageService,
+    private message:MessageService,
     private gateway:EventsGateway<Created>
   ){}
 }

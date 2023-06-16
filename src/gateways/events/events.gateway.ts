@@ -1,12 +1,10 @@
-
-import { Socket,Server } from 'socket.io'
+import { Server } from 'socket.io'
 
 import { 
   WebSocketServer,
   SubscribeMessage,
   OnGatewayConnection,
   WebSocketGateway,
-  MessageBody
 } from '@nestjs/websockets';
 
 @WebSocketGateway({ 
@@ -23,6 +21,15 @@ export class EventsGateway<Type> implements OnGatewayConnection {
       'newMessage',
       document
     )
+  }
+
+  onReadByOther(_id:string){
+    
+    this.server.emit(
+      'read',
+      _id
+    )
+
   }
 
   handleConnection(){

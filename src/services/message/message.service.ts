@@ -1,4 +1,5 @@
-import { Model,Types,Aggregate,Document } from 'mongoose'
+import { Model,Types,Document } from 'mongoose'
+import { ReadDto } from '../../dto/read.dto'
 import { Injectable } from '@nestjs/common';
 import { Profile } from '../../schemas/profile.schema'
 import { MessageSchema } from '../../schemas/message.schema'
@@ -9,15 +10,16 @@ import { InjectModel } from '@nestjs/mongoose'
 
   constructor(@InjectModel('Message') private message: Model<MessageSchema>){}
 
-  getAllMessage<Filter>($or:[Filter,Filter]):Aggregate<Doc[]>{
+
+  async getAllMessage<Filter>($or:[Filter,Filter]):Promise<Doc[]>{
     return this.message.aggregate([
       {$match:{
         $or
-      }},
+      }}
     ])
   }
 
-  getRecently<T1,T2>($or:[T1,T2]):Aggregate<Last[]>{
+  async getRecently<T1,T2>($or:[T1,T2]):Promise<Last[]>{
     return this.message.aggregate([
       {$match:{
         $or
@@ -60,11 +62,14 @@ import { InjectModel } from '@nestjs/mongoose'
     ])
   }
 
-  create(params:New):Promise<Created>{    
-    return new this.message({
-      ...params
-    })
-    .save()
+  async create(params:New):Promise<Created>{    
+    return new this.message(params).save()
+  }
+
+  async updateReadStatus(_id:Types.ObjectId,opts:Omit<ReadDto,"_id">):Promise<Created>{
+    return this.message.findByIdAndUpdate(
+      _id,opts
+    )
   }
 }
 
@@ -74,7 +79,7 @@ type Ext = Omit<MessageSchema & {_id:Types.ObjectId},never>
 
 // return type of fetch recently message
 
-export type Last = Pick<MessageSchema,"value"|"groupId"> & {
+export type Last = Pick<MessageSchema,"read"|"value"|"groupId"> & {
   _id:Types.ObjectId,
   sender:Omit<Profile,"_id">,
   accept:Omit<Profile,"_id">,
@@ -92,6 +97,7 @@ interface New{
   groupId:Types.ObjectId,
   sender:Types.ObjectId,
   accept:Types.ObjectId,
+  read:boolean,
   sendAt:number,
   value:string,
 }

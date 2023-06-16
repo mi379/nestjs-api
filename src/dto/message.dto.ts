@@ -5,4 +5,5 @@ export class MessageDto{
   @IsNotEmpty() value:string
   @IsNotEmpty() groupId:string
   @IsNotEmpty() sendAt:number
+  @IsNotEmpty() read:boolean
 }

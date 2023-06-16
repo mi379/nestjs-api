@@ -7,4 +7,5 @@ import { Types } from 'mongoose'
   @Prop() groupId:Types.ObjectId
   @Prop() accept:Types.ObjectId
   @Prop() sendAt:number
+  @Prop() read:boolean
 }

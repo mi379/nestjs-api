@@ -79,7 +79,7 @@ type Ext = Omit<MessageSchema & {_id:Types.ObjectId},never>
 
 // return type of fetch recently message
 
-export type Last = Pick<MessageSchema,"read"|"value"|"groupId"> & {
+export type Last = Pick<MessageSchema,"read"|"value"|"groupId"|"contentType"|"description"> & {
   _id:Types.ObjectId,
   sender:Omit<Profile,"_id">,
   accept:Omit<Profile,"_id">,
@@ -100,4 +100,6 @@ interface New{
   read:boolean,
   sendAt:number,
   value:string,
+  contentType:string,
+  description:string
 }

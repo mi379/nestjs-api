@@ -6,4 +6,6 @@ export class MessageDto{
   @IsNotEmpty() groupId:string
   @IsNotEmpty() sendAt:number
   @IsNotEmpty() read:boolean
+  @IsNotEmpty() contentType:string
+  description:string
 }

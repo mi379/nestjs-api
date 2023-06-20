@@ -8,4 +8,6 @@ import { Types } from 'mongoose'
   @Prop() accept:Types.ObjectId
   @Prop() sendAt:number
   @Prop() read:boolean
+  @Prop() contentType:string
+  @Prop() description:string
 }

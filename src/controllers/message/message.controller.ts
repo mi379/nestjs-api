@@ -38,7 +38,7 @@ export class MessageController {
     })
 
     try{
-      return await this.message.getAllMessage<Criteria>(
+      return  await this.message.getAllMessage<Criteria>(
         [
           {
             sender: user,
@@ -65,7 +65,7 @@ export class MessageController {
     }
 
     try{
-      return await this.message.getRecently<C1,C2>(
+      return await  this.message.getRecently<C1,C2>(
         [
           {
             sender:new Types.ObjectId(

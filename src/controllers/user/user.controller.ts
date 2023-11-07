@@ -20,12 +20,18 @@ export class UserController {
         _id:result?._id
       })
 
-      if(!result){
+       if(!result){
+         throw new Error(
+           'user not found'
+         ) 
+       }
+
+      /*if(!result){
         throw new HttpException(
           'user not found...',
           404
         )
-      }
+      }*/
 
       return {
         authorization:token,
@@ -33,7 +39,18 @@ export class UserController {
       }
     }
     catch(err:any){
-      console.log(err.message) 
+      if(err.message === "user not found"){
+        throw new HttpException(
+          err.message,404
+        ) 
+      }
+      else{
+        new Logger('Error').error(err.message) 
+        throw new InternalServerErrorException() 
+      }
+
+     
+      //console.log(err.message) 
       
       //new Logger('Error').error(err.message)
 

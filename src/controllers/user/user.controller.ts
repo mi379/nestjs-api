@@ -22,7 +22,7 @@ export class UserController {
 
       if(!result){
         throw new HttpException(
-          'user not found',
+          'user not found...',
           404
         )
       }

@@ -33,11 +33,11 @@ export class UserController {
       }
     }
     catch(err:any){
-      console.log(err) 
+      console.log(err.message) 
       
-      new Logger('Error').error(err.message)
+      //new Logger('Error').error(err.message)
 
-      throw new InternalServerErrorException()
+      //throw new InternalServerErrorException()
     }
   }
 

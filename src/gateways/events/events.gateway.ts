@@ -1,4 +1,4 @@
-import { Server } from 'socket.io'
+import { Server, Socket } from 'socket.io'
 
 import { 
   WebSocketServer,
@@ -15,6 +15,24 @@ import {
 
 export class EventsGateway<Type> implements OnGatewayConnection {
   @WebSocketServer() server:Server
+
+  @SubscribeMessage('typingTrue') 
+ 
+  typingTrue(client:Socket,_id:string){
+    this.server.emit(
+      'typingTrue', 
+      _id
+    ) 
+  }
+
+  @SubscribeMessage('typingFalse') 
+  
+  typingFalse(client:Socket,_id:string){
+    this.server.emit(
+      'typingTrue', 
+      _id
+    ) 
+  }
   
   onSuccessSend(document:Type){
     this.server.emit(

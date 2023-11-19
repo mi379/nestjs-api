@@ -29,7 +29,7 @@ export class EventsGateway<Type> implements OnGatewayConnection {
   
   typingFalse(client:Socket,_id:string){
     this.server.emit(
-      'typingTrue', 
+      'typingFalse', 
       _id
     ) 
   }

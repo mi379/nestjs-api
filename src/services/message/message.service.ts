@@ -48,7 +48,7 @@ import { InjectModel } from '@nestjs/mongoose'
             }
           }
         }
-      }}
+      }}, 
       {$lookup:{
         from:"profiles",
         as:"sender",

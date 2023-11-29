@@ -49,10 +49,6 @@ import { InjectModel } from '@nestjs/mongoose'
           }
         }
       }}
-      /*
-      {$replaceRoot:{
-        newRoot:"$root"
-      }},
       {$lookup:{
         from:"profiles",
         as:"sender",
@@ -72,6 +68,7 @@ import { InjectModel } from '@nestjs/mongoose'
         path:"$accept"
       }},
       {$project:{
+        _id:0, 
         sender:{
           _id:0
         },
@@ -79,7 +76,6 @@ import { InjectModel } from '@nestjs/mongoose'
           _id:0
         }
       }}
-      */
     ])
   }
 

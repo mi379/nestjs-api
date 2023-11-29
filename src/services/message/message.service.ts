@@ -34,10 +34,10 @@ import { InjectModel } from '@nestjs/mongoose'
                 $eq:[
                   '$read', 
                   false
-                ], 
-                then:1, 
-                else:0
-              }
+                ]
+              }, 
+              then:1, 
+              else:0
             }
           }
         }

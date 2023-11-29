@@ -24,13 +24,10 @@ import { InjectModel } from '@nestjs/mongoose'
       {$match:{
         $or
       }}
-      /*
       {$group:{
         _id:"$groupId",
-        root:{
-          $max:"$$ROOT"
-        }
-      }},
+      }}
+      /*
       {$replaceRoot:{
         newRoot:"$root"
       }},

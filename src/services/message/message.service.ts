@@ -23,12 +23,9 @@ import { InjectModel } from '@nestjs/mongoose'
     return this.message.aggregate([
       {$match:{
         $or
-      }}
+      }}, 
       {$group:{
-        _id:"$groupId",
-        root:{
-          $max:"$$ROOT"
-        }
+        _id:"$groupId"
       }}
       /*
       {$replaceRoot:{

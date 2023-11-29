@@ -26,7 +26,9 @@ import { InjectModel } from '@nestjs/mongoose'
       }}, 
       {$group:{
         _id:"$groupId",
-        unreadCounter:100
+        unreadCounter:{
+          $count: {}
+        }
       }}
       /*
       {$replaceRoot:{

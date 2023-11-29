@@ -30,7 +30,7 @@ import { InjectModel } from '@nestjs/mongoose'
         value:{$last:'$value'},
         groupId:{$last:'$groupId'}, 
         accept:{$last:'$accept'},
-        sendAt:{$last:'sendAt'}, 
+        sendAt:{$last:'$sendAt'}, 
         read:{$last:'$read'}, 
         contentType:{$last:'$contentType'}, 
         description:{$last:'$description'}, 

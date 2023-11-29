@@ -28,8 +28,9 @@ import { InjectModel } from '@nestjs/mongoose'
         _id:"$groupId",
         unreadCounter:{
           $count: {
-            $cond: [
-              $read:false
+            $cond: [{
+                $read:false
+              }
             ]
           }
         }

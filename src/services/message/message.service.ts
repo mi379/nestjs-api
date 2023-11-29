@@ -25,7 +25,8 @@ import { InjectModel } from '@nestjs/mongoose'
         $or
       }}, 
       {$group:{
-        _id:"$groupId", 
+        _id:"$groupId",
+        unread:100, 
         root:{
           $max:"$$ROOT"
         }

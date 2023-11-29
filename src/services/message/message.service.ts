@@ -26,6 +26,9 @@ import { InjectModel } from '@nestjs/mongoose'
       }}
       {$group:{
         _id:"$groupId",
+        root:{
+          $max:"$$ROOT"
+        }
       }}
       /*
       {$replaceRoot:{

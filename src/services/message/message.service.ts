@@ -23,7 +23,8 @@ import { InjectModel } from '@nestjs/mongoose'
     return this.message.aggregate([
       {$match:{
         $or
-      }},
+      }}
+      /*
       {$group:{
         _id:"$groupId",
         root:{
@@ -59,6 +60,7 @@ import { InjectModel } from '@nestjs/mongoose'
           _id:0
         }
       }}
+      */
     ])
   }
 

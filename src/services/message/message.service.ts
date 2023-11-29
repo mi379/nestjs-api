@@ -29,7 +29,7 @@ import { InjectModel } from '@nestjs/mongoose'
         unreadCounter:{
           $count: {
             $cond: [{
-                $read:false
+                "$read":false
               }
             ]
           }

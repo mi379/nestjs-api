@@ -25,9 +25,16 @@ import { InjectModel } from '@nestjs/mongoose'
         $or
       }}, 
       {$group:{
-        _id:"$groupId", 
-        value:{$last:'$value'}, 
-        unread:{
+        _id:"$groupId",
+        sender:{$last:'$sender'}, 
+        value:{$last:'$value'},
+        groupId:{$last:'$groupId'}, 
+        accept:{$last:'$accept'},
+        sendAt:{$last:'sendAt'}, 
+        read:{$last:'$read'}, 
+        contentType:{$last:'$contentType'}, 
+        description:{$last:'$description'}, 
+        unreadCounter:{
           $sum:{
             $cond:{
               if:{

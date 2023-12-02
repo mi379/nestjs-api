@@ -61,7 +61,7 @@ export class UserController {
 
   @Get('search/:query') @UseGuards(AuthGuard) 
 
-  async search(@Request() req:Request,@Param('query') query:string):string{
+  async search(@Request() req:Request,@Param('query') query:string):Promise<string>{
     return req.user._id
   }
 

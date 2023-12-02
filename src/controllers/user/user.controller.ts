@@ -59,7 +59,7 @@ export class UserController {
     }
   }
 
-  @Get('search/:query') @UseGuards(AuthGuards) 
+  @Get('search/:query') @UseGuards(AuthGuard) 
 
   async search(@Request() req:Request,@Param('query') query:string):string{
     return req.user._id

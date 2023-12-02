@@ -9,7 +9,10 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable() export class UserService {
 
-  constructor(@InjectModel('User') private user: Model<User>){}
+  constructor(
+    @InjectModel('User') private user: Model<User>, 
+    @InjectModel('Profile') private profile : Model<Profile>
+  ){}
 
   // login(body:LoginDto):Promise<Detail[]>{
     

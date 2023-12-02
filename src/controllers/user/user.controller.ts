@@ -1,4 +1,5 @@
-import { Logger,Controller,Get,Post,Body,HttpException,Header,InternalServerErrorException } from '@nestjs/common';
+import { UseGuards,Request,Param,Logger,Controller,Get,Post,Body,HttpException,Header,InternalServerErrorException } from '@nestjs/common';
+import { AuthGuard } from '../../auth.guard'
 import { UserService,Detail } from '../../services/user/user.service'
 import { CommonService } from '../../services/common/common.service';
 import { LoginDto } from '../../dto/login.dto'
@@ -58,7 +59,11 @@ export class UserController {
     }
   }
 
-  
+  @Get('search/:query') @UseGuards(AuthGuards) 
+
+  async search(@Request() req:Request,@Param('query') query:string):string{
+    return req.user._id
+  }
 
   @Get('hello') responseWithHello():string{
     return 'hello'

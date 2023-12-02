@@ -101,3 +101,10 @@ interface Token{
   _id:Types.ObjectId | undefined
 }
 
+interface Request{
+  user:{
+    _id:string
+  }
+}
+       
+

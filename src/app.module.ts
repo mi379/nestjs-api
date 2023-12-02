@@ -1,5 +1,6 @@
 import { join } from 'path'
 import { User } from './schemas/user.schema'
+import { Profile } from './schemas/profile.schema'
 import { MessageSchema } from './schemas/message.schema'
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { SchemaFactory } from '@nestjs/mongoose';
@@ -35,6 +36,10 @@ const schemas = MongooseModule.forFeature([
   {
     name:'Message',
     schema:message
+  }, 
+  {
+    name:'Profile',
+    schema:Profile
   }
 ])
 

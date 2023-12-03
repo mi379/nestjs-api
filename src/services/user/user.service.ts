@@ -108,50 +108,7 @@ import { JwtService } from '@nestjs/jwt';
             ]
           }
         }
-      },
-      {
-        $unwind:{
-          path:"$messages"
-        }
       }
-      /*
-      {
-        $project:{
-          sendMessage:{
-            $filter:{
-              input:"$sendMessage", 
-              as:"sendMessage", 
-              cond:{
-                $eq:[
-                  "$$sendMessage.accept", 
-                  user
-                ]
-              }
-            }
-          }
-        }
-      }
-      */
-      /*
-      {
-        $lookup:{
-          as:"messages", 
-          from:"messages", 
-          pipeline: [
-            {$match:{
-              $or:[
-                {
-                  sender:user, 
-                  accept:new Types.ObjectId(
-                    "$usersRef"
-                  ) 
-                }
-              ]
-            }}
-          ]
-        }
-      }
-      */
     ])
   }
 }

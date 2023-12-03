@@ -123,7 +123,7 @@ import { JwtService } from '@nestjs/jwt';
                 $or:[
                   {
                     sender:"$usersRef",
-                    accept:user
+                    accept:"$usersRef"
                   }
                 ]
               }

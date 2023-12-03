@@ -122,12 +122,6 @@ import { JwtService } from '@nestjs/jwt';
             }
           ]
         }
-      }, 
-      {
-        $group:{
-          _id:"$_id", 
-          value:{$last:'value'}
-        }
       }
       /*
       {

@@ -95,7 +95,7 @@ import { JwtService } from '@nestjs/jwt';
         $match:{
           $or:[
             {
-              "sendMessage.accept":user
+              "$$sendMessage.accept":user
             }
           ]
         }

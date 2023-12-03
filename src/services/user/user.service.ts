@@ -125,6 +125,10 @@ import { JwtService } from '@nestjs/jwt';
                     $eq:[
                       "$$messages.sender", 
                       user
+                    ], 
+                    $eq:[
+                       "$$messages.accept", 
+                       "$usersRef"
                     ]
                   }
                 ]

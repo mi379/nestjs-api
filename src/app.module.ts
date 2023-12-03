@@ -24,6 +24,10 @@ const message =  SchemaFactory.createForClass(
   MessageSchema
 )
 
+const profile = SchemaFactory.createForClass(
+  Profile
+) 
+
 const dbConnection = MongooseModule.forRoot(
   process.env.DATABASE_URI
 )
@@ -39,7 +43,7 @@ const schemas = MongooseModule.forFeature([
   }, 
   {
     name:'Profile',
-    schema:Profile
+    schema:profile
   }
 ])
 

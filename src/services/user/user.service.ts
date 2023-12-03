@@ -92,7 +92,9 @@ import { JwtService } from '@nestjs/jwt';
               $or:[
                 {
                   sender:user, 
-                  accept:"$usersRef"
+                  accept:new Types.ObjectId(
+                    "$usersRef"
+                  ) 
                 }
               ]
             }}

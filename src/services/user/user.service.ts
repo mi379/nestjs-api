@@ -82,7 +82,13 @@ import { JwtService } from '@nestjs/jwt';
         $match:{
           firstName
         }
-      }, 
+      },
+      {
+        $addFields:{
+          ref:"$usersRef"
+        }
+      }
+      /*
       {
         $lookup:{
           as:"messages", 
@@ -101,6 +107,7 @@ import { JwtService } from '@nestjs/jwt';
           ]
         }
       }
+      */
     ])
   }
 }

@@ -85,12 +85,11 @@ import { JwtService } from '@nestjs/jwt';
       },
       {
         $lookup:{
-          from:"messages", 
-          localField:"sender", 
-          foreignField:"usersRef",
-          as:"sendMessage"
+          as:"messages", 
+          from:"messages"
         }
-      }, 
+      }
+      /*
       {
         $project:{
           sendMessage:{
@@ -107,6 +106,7 @@ import { JwtService } from '@nestjs/jwt';
           }
         }
       }
+      */
       /*
       {
         $lookup:{

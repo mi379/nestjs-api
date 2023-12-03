@@ -90,6 +90,18 @@ import { JwtService } from '@nestjs/jwt';
           foreignField:"usersRef",
           as:"sendMessage"
         }
+      }, 
+      {
+        $filter:{
+          input:"$sendMessage", 
+          as:"sendMessage", 
+          cond:[{
+            $eq:[
+              "$accept", 
+              user
+            ]
+          }]
+        }
       }
       /*
       {

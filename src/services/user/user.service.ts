@@ -116,7 +116,7 @@ import { JwtService } from '@nestjs/jwt';
       }, 
       {
         $match:{
-          'message.value':'ping'
+          'messages.value':'ping'
         }
       }
       /*

@@ -84,8 +84,14 @@ import { JwtService } from '@nestjs/jwt';
         }
       }, 
       {
-        $addFields:{
-          ref:"$usersRef"
+        $lookup:{
+          as:"messages", 
+          from:"messages", 
+          pipeline: [
+            $match:{
+              sender:$usersRef
+            }
+          ]
         }
       }
     ])

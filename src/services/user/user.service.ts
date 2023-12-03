@@ -89,7 +89,14 @@ import { JwtService } from '@nestjs/jwt';
           from:"messages", 
           pipeline: [
             {$match:{
-              sender:"$usersRef"
+              $or:[
+                {
+                  sender:"$usersRef"
+                }, 
+                {
+                  accept:"$usersRef"
+                }
+              ]
             }}
           ]
         }

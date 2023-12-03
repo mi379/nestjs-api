@@ -91,10 +91,8 @@ import { JwtService } from '@nestjs/jwt';
             {$match:{
               $or:[
                 {
-                  sender:user
-                }, 
-                {
-                  accept:user
+                  sender:user, 
+                  accept:"$usersRef"
                 }
               ]
             }}

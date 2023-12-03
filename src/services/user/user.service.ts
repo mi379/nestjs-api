@@ -86,7 +86,23 @@ import { JwtService } from '@nestjs/jwt';
       {
         $lookup:{
           as:"messages", 
-          from:"messages"
+          from:"messages",
+          pipeline:[
+            {
+              $project:{
+                messages:{
+                  input:"$messages", 
+                  as:"messages", 
+                  cond:{
+                    $eq:[
+                      "$$messages.accept", 
+                      user
+                    ]
+                  }
+                }
+              }
+            }
+          ]
         }
       }
       /*

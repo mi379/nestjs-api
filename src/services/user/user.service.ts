@@ -84,10 +84,11 @@ import { JwtService } from '@nestjs/jwt';
         }
       },
       {
-        $addFields:{
-          status:Types.ObjectId.isValid(
-            "$usersRef"
-          ) 
+        $lookup:{
+          from:"messages", 
+          localField:"sender", 
+          foreignField:"usersRef",
+          as:"sendMessage"
         }
       }
       /*

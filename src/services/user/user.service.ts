@@ -116,7 +116,7 @@ import { JwtService } from '@nestjs/jwt';
       }, 
       {
         $match:{
-          'messages.sender':user
+          'messages.sender':'$usersRef'
         }
       }
       /*

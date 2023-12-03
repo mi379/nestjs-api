@@ -87,18 +87,8 @@ import { JwtService } from '@nestjs/jwt';
         $lookup:{
           as:"messages", 
           from:"messages",
-          pipeline:[
-            {
-              $match:{
-                $or:[
-                  {
-                    sender:"$usersRef", 
-                    accept:user
-                  }
-                ]
-              }
-            }
-          ]
+          localField:"sender", 
+          foreignField:"usersRef"
         }
       }
       /*

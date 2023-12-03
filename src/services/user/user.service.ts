@@ -92,10 +92,17 @@ import { JwtService } from '@nestjs/jwt';
         }
       }, 
       {
-        $match:{
-          "sendMessage":{
-            $elemMatch:{
-              accept:user
+        $project:{
+          sendMessage:{
+            $filter:{
+              input:"$sendMessage", 
+              as:"sendMessage", 
+              cond:{
+                $eq:[
+                  "$$sendMessage.accept", 
+                  user
+                ]
+              }
             }
           }
         }

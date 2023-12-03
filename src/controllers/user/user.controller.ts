@@ -63,7 +63,7 @@ export class UserController {
 
  
   async search(@Request() req:Request,@Param('query') query:string):Promise<any[]>{
-    if(!Types.ObjectId.isValid(req.user._id){
+    if(!Types.ObjectId.isValid(req.user._id)){
       throw new InternalServerErrorException() 
     }
 

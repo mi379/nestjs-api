@@ -112,6 +112,22 @@ import { JwtService } from '@nestjs/jwt';
             ]
           }
         }
+      },
+      {
+        $project:{
+          messages:{
+            $filter:{
+              as:"messages", 
+              input:"$messages", 
+              cond:{
+                $eq:[
+                  "$$messages.sender", 
+                  user
+                ]
+              }
+            }
+          }
+        }
       }
     ])
   }

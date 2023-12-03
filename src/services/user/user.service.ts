@@ -1,4 +1,4 @@
-import { Model,Aggregate } from 'mongoose'
+import { Types,Model,Aggregate } from 'mongoose'
 import { LoginDto } from '../../dto/login.dto'
 import { Injectable } from '@nestjs/common';
 import { Profile } from '../../schemas/profile.schema'
@@ -73,6 +73,16 @@ import { JwtService } from '@nestjs/jwt';
           usersRef:0
         }
       }}
+    ])
+  }
+
+  search(user:Types.ObjectId,firstName:string):Aggregate<any[]>{
+    return this.profile.aggregate([
+      {
+        $match:{
+          firstName
+        }
+      }
     ])
   }
 }

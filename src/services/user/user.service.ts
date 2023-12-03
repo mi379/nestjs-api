@@ -87,10 +87,10 @@ import { JwtService } from '@nestjs/jwt';
         $lookup:{
           as:"messages", 
           from:"messages",
-          localField:"sender", 
+          localField:{$or["sender","accept"]}, 
           foreignField:"usersRef"
         }
-      }
+      },
       /*
       {
         $project:{

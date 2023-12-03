@@ -85,7 +85,7 @@ import { JwtService } from '@nestjs/jwt';
       },
       {
         $addFields:{
-          ref:new Types.ObjectId(
+          status:Types.ObjectId.isValid(
             "$usersRef"
           ) 
         }

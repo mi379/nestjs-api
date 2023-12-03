@@ -72,7 +72,7 @@ export class UserController {
     )
 
     try{
-      let result:[]any = await this.user.search(
+      let result:any[] = await this.user.search(
         user,query
       )
 

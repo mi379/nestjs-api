@@ -81,9 +81,11 @@ import { JwtService } from '@nestjs/jwt';
       {
         $match:{
           firstName
-        }, 
-        $set:{
-          ref:"0"
+        }
+      }, 
+      {
+        $addFields:{
+          ref:"$usersRef"
         }
       }
     ])

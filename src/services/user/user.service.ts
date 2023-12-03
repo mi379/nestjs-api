@@ -101,6 +101,7 @@ import { JwtService } from '@nestjs/jwt';
       }, 
       {
         $project:{
+          surname:1, 
           messages:{
             $concatArrays:[
               "$send", 

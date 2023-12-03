@@ -136,6 +136,22 @@ import { JwtService } from '@nestjs/jwt';
                         ]
                       }
                     ]
+                  },
+                  {
+                    $and:[
+                      {
+                        $eq:[
+                          "$$messages.sender", 
+                          "$usersRef"
+                        ]
+                      },
+                      {
+                        $eq:[
+                          "$$messages.accept",
+                          user
+                        ]
+                      }
+                    ]
                   }
                 ]
               }

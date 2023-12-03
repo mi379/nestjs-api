@@ -113,6 +113,11 @@ import { JwtService } from '@nestjs/jwt';
         $unwind:{
           path:"$messages"
         }
+      }, 
+      {
+        $match:{
+          'message.value':'ping'
+        }
       }
       /*
       {

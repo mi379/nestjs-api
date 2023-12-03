@@ -122,7 +122,7 @@ import { JwtService } from '@nestjs/jwt';
               cond:{
                 $eq:[
                   "$$messages.sender", 
-                  user
+                  "$usersRef"
                 ]
               }
             }

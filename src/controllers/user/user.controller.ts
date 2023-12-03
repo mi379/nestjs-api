@@ -61,8 +61,28 @@ export class UserController {
 
   @Get('search/:query') @UseGuards(AuthGuard) 
 
-  async search(@Request() req:Request,@Param('query') query:string):Promise<string>{
-    return req.user._id
+ 
+  async search(@Request() req:Request,@Param('query') query:string):Promise<any[]>{
+    if(!Types.ObjectId.isValid(req.user._id){
+      throw new InternalServerErrorException() 
+    }
+
+    let user:Types.ObjectId = new Types.ObjectId(
+     req.user._id
+    )
+
+    try{
+      let result:[]any = await this.user.search(
+        user,query
+      )
+
+      return result
+     
+    }
+    catch(err:any){
+      new Logger('Error').error(err.message) 
+      throw new InternalServerErrorException() 
+    }
   }
 
   @Get('hello') responseWithHello():string{

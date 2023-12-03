@@ -98,7 +98,8 @@ import { JwtService } from '@nestjs/jwt';
           localField:"usersRef", 
           foreignField:"accept"
         }
-      }, 
+      }
+      /*
       {
         $project:{
           messages:{
@@ -109,6 +110,7 @@ import { JwtService } from '@nestjs/jwt';
           }
         }
       }
+     */
     ])
   }
 }

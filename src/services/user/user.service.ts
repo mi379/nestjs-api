@@ -120,9 +120,10 @@ import { JwtService } from '@nestjs/jwt';
               as:"messages", 
               input:"$messages", 
               cond:{
-                $eq:[
-                  "$$messages.sender", 
-                  "$usersRef"
+                $or:[
+                  {
+                    sender:"$usersRef"
+                  }
                 ]
               }
             }

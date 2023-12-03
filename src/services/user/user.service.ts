@@ -115,8 +115,18 @@ import { JwtService } from '@nestjs/jwt';
         }
       }, 
       {
-        $project:{
-          surname:1
+        $match:{
+          $or:[
+            {
+              sender:user
+            }
+          ]
+        }
+      }, 
+      {
+        $group:{
+          _id:"$_id", 
+          value:{$last:'value'}
         }
       }
       /*

@@ -155,21 +155,8 @@ import { JwtService } from '@nestjs/jwt';
         }
       }, 
       {
-        $addFields:{
-          unreadCounter:{
-            $sum:{
-              cond:{
-                if:{
-                  $in:[
-                    '$messages.value',
-                    'ping'
-                  ]
-                }, 
-                then:1, 
-                else:0
-              }
-            }
-          }
+        $group:{
+          _id:"$messages.groupId"
         }
       }
       /*

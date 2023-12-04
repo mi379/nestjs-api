@@ -89,7 +89,11 @@ import { JwtService } from '@nestjs/jwt';
           from:"messages", 
           pipeline:[{
             $match:{
-              value:'ping'
+              $or:[
+                {
+                  sender:user
+                }
+              ]
             }
           }]
         }

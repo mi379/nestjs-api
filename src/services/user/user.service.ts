@@ -117,7 +117,14 @@ import { JwtService } from '@nestjs/jwt';
       }, 
       {
         $addFields:{
-          x:"$messages"
+          messages:{
+            $filter:{
+              input:"$messages", 
+              cond:{
+                $or:[]
+              }
+            }
+          }
         }
       }
       /*

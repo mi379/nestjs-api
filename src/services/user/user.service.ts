@@ -114,6 +114,11 @@ import { JwtService } from '@nestjs/jwt';
           send:0, 
           accept:0
         }
+      }, 
+      {
+        $addFields:{
+          x:"$messages"
+        }
       }
       /*
       {

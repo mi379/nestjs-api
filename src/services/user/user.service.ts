@@ -116,7 +116,7 @@ import { JwtService } from '@nestjs/jwt';
         }
       }, 
       {
-        $addFields:{
+        $project:{
           messages:{
             $filter:{
               input:"$messages",

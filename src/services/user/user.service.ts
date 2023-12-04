@@ -146,6 +146,14 @@ import { JwtService } from '@nestjs/jwt';
             }
           }
         }
+      }},
+      {$addFields:{
+        messages:{
+          $slice:[
+            "$messages", 
+            -1
+          ]
+        }
       }}
       /*
       {

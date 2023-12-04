@@ -100,9 +100,7 @@ import { JwtService } from '@nestjs/jwt';
         }
       }, 
       {
-        $project:{
-          usersRef:1, 
-          surname:1, 
+        $addFields:{
           messages:{
             $concatArrays:[
               "$send", 
@@ -110,56 +108,11 @@ import { JwtService } from '@nestjs/jwt';
             ]
           }
         }
-      },
-      {
-        $project:{
-          surname:1,
-          messages:{
-            $filter:{
-              as:"messages", 
-              input:"$messages", 
-              cond:{
-                $or:[
-                  {
-                    $and:[
-                      {
-                        $eq:[
-                          "$$messages.sender", 
-                          user
-                        ]
-                      }, 
-                      {
-                        $eq:[
-                          "$$messages.accept", 
-                          "$usersRef"
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    $and:[
-                      {
-                        $eq:[
-                          "$$messages.sender", 
-                          "$usersRef"
-                        ]
-                      },
-                      {
-                        $eq:[
-                          "$$messages.accept",
-                          user
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          }
-        }
       }
     ])
   }
+
+  
 }
 
 type Omited = Omit<Profile,"_id"|"usersRef">

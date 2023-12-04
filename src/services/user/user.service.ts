@@ -88,10 +88,15 @@ import { JwtService } from '@nestjs/jwt';
           as:"messages", 
           from:"messages", 
           pipeline:[{
-            $filter:{
-              input:"$$localArray", 
-              cond:{$or:[]}
+            $addFields:{
+              result:{
+                $filter:{
+                  input:"$$localArray", 
+                  cond:{$or:[]}
+                }
+              }
             }
+            
           }]
         }
       }

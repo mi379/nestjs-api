@@ -160,7 +160,7 @@ import { JwtService } from '@nestjs/jwt';
             $sum:{
               cond:{
                 if:{
-                  $eq:[
+                  $in:[
                     '$messages.value',
                     'ping'
                   ]

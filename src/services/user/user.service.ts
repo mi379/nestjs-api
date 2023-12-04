@@ -148,8 +148,12 @@ import { JwtService } from '@nestjs/jwt';
             }
           }
         }
+      }, 
+      {
+        $unwind:{
+          path:"$messages"
+        }
       }
-      
       /*
       {
         $project:{

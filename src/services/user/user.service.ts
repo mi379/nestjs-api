@@ -148,17 +148,6 @@ import { JwtService } from '@nestjs/jwt';
             }
           }
         }
-      }, 
-      {
-        $unwind:{
-          path:"$messages"
-        }
-      }, 
-      {
-        $group:{
-          _id:"$messages.groupId", 
-          messages:{$last:'$messages'}
-        }
       }
       /*
       {

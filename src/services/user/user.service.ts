@@ -108,6 +108,12 @@ import { JwtService } from '@nestjs/jwt';
             ]
           }
         }
+      },
+      {
+        $project:{
+          send:0, 
+          accept:0
+        }
       }
     ])
   }

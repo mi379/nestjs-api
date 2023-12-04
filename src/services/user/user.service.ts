@@ -78,77 +78,75 @@ import { JwtService } from '@nestjs/jwt';
 
   search(user:Types.ObjectId,firstName:string):Aggregate<any[]>{
     return this.profile.aggregate([
-      {
-        $match:{
-          firstName
+      {$match:{
+        firstName
+      }}, 
+      {$lookup:{
+        as:"send", 
+        from:"messages",
+        localField:"usersRef", 
+        foreignField:"sender"
+      }},
+      {$lookup:{
+        as:"accept", 
+        from:"messages",
+        localField:"usersRef", 
+        foreignField:"accept"
+      }}, 
+      {$addFields:{
+        messages:{
+          $concatArrays:[
+            "$send", 
+            "$accept"
+          ]
         }
-      }, 
-      {
-        $lookup:{
-          as:"send", 
-          from:"messages",
-          localField:"usersRef", 
-          foreignField:"sender"
-        }
-      },
-      {
-        $lookup:{
-          as:"accept", 
-          from:"messages",
-          localField:"usersRef", 
-          foreignField:"accept"
-        }
-      }, 
-      {
-        $addFields:{
-          messages:{
-            $concatArrays:[
-              "$send", 
-              "$accept"
-            ]
-          }
-        }
-      },
-      {
-        $project:{
-          send:0, 
-          accept:0
-        }
-      }, 
-      {
-        $addFields:{
-          messages:{
-            $filter:{
-              as:"messages", 
-              input:"$messages", 
-              cond:{
-                $or:[
-                  {$and:[
-                    {$eq:[
-                     "$$messages.sender", 
-                      user
-                    ]}, 
-                    {$eq:[
-                      "$$messages.accept", 
-                      "$usersRef"
-                    ]}
+      }},
+      {$project:{
+        send:0, 
+        accept:0
+      }}, 
+      {$addFields:{
+        messages:{
+          $filter:{
+            as:"messages", 
+            input:"$messages", 
+            cond:{
+              $or:[
+                {$and:[
+                  {$eq:[
+                    "$$messages.sender", 
+                    user
                   ]}, 
-                  {$and:[
-                    {$eq:[
-                     "$$messages.sender", 
-                      "$usersRef"
-                    ]}, 
-                    {$eq:[
-                      "$$messages.accept", 
-                      user
-                    ]}
+                  {$eq:[
+                    "$$messages.accept", 
+                    "$usersRef"
                   ]}
-                ]
-              }
+                ]}, 
+                {$and:[
+                  {$eq:[
+                    "$$messages.sender", 
+                    "$usersRef"
+                  ]}, 
+                  {$eq:[
+                    "$$messages.accept", 
+                    user
+                  ]}
+                ]}
+              ]
             }
           }
         }
-      }
+      }}, 
+      {$addFields:{
+        unreadCounter: {
+          $size:{
+            $filter:{
+              input: "$messages",
+              cond: { $eq: ["$$this.read", false] }
+            }
+          }
+        }
+      }}
       /*
       {
         $project:{

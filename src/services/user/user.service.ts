@@ -114,6 +114,51 @@ import { JwtService } from '@nestjs/jwt';
           send:0, 
           accept:0
         }
+      }, 
+      {
+        $addFields:{
+          messages:{
+            $filter:{
+              input:"$messages",
+              cond:{
+                $or:[
+                  {
+                    $and:[
+                      {
+                        $eq:[
+                          "$$messages.sender", 
+                          user
+                        ]
+                      }, 
+                      {
+                        $eq:[
+                          "$$messages.accept", 
+                          "$usersRef"
+                        ]
+                      }
+                    ]
+                  }, 
+                  {
+                    $and:[
+                      {
+                        $eq:[
+                          "$$messages.sender", 
+                          "$usersRef"
+                        ]
+                      }, 
+                      {
+                        $eq:[
+                          "$$messages.accept", 
+                          user
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
       }
     ])
   }

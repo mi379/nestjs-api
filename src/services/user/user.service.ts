@@ -82,24 +82,7 @@ import { JwtService } from '@nestjs/jwt';
         $match:{
           firstName
         }
-      },
-      {
-        $lookup:{
-          as:"messages", 
-          from:"messages", 
-          pipeline:[{
-            $match:{
-              $or:[
-                {
-                  'messages.sender':"$usersRef"
-                  
-                }
-              ]
-            }
-          }]
-        }
-      }
-      /*
+      }, 
       {
         $lookup:{
           as:"send", 
@@ -150,7 +133,7 @@ import { JwtService } from '@nestjs/jwt';
           }
         }
       }
-      */
+      
       /*
       {
         $project:{

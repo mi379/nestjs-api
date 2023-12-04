@@ -90,11 +90,9 @@ import { JwtService } from '@nestjs/jwt';
           pipeline:[{
             $match:{
               $or:[
-                {$and:[
-                  {sender:{
-                    $in:["$usersRef"] 
-                  }}
-                ]}, 
+                {sender:{
+                  $in:["$usersRef"] 
+                }}
               ]
             }
           }]

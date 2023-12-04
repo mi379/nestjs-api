@@ -161,8 +161,8 @@ import { JwtService } from '@nestjs/jwt';
               cond:{
                 if:{
                   $eq:[
-                    '$messages.read',
-                    false
+                    '$messages.value',
+                    'ping'
                   ]
                 }, 
                 then:1, 

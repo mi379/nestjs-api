@@ -100,8 +100,7 @@ import { JwtService } from '@nestjs/jwt';
         }
       }, 
       {
-        $project:{
-          usersRef:1, 
+        $addFields:{
           messages:{
             $concatArrays:[
               "$send", 
@@ -111,7 +110,7 @@ import { JwtService } from '@nestjs/jwt';
         }
       }, 
       {
-        $project:{
+        $addFields:{
           messages:{
             $filter:{
               as:"messages", 

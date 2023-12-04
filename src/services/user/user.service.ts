@@ -88,15 +88,9 @@ import { JwtService } from '@nestjs/jwt';
           as:"messages", 
           from:"messages", 
           pipeline:[{
-            $addFields:{
-              result:{
-                $filter:{
-                  input:"$$localArray", 
-                  cond:{$or:[]}
-                }
-              }
+            $match:{
+              value:'ping'
             }
-            
           }]
         }
       }

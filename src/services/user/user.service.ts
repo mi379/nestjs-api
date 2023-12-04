@@ -85,6 +85,19 @@ import { JwtService } from '@nestjs/jwt';
       },
       {
         $lookup:{
+          as:"messages", 
+          from:"messages", 
+          pipeline:[{
+            $filter:{
+              input:"$$localArray", 
+              cond:{$or:[]}
+            }
+          }]
+        }
+      }
+      /*
+      {
+        $lookup:{
           as:"send", 
           from:"messages",
           localField:"usersRef", 
@@ -133,6 +146,7 @@ import { JwtService } from '@nestjs/jwt';
           }
         }
       }
+      */
       /*
       {
         $project:{

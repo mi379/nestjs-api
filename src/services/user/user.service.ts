@@ -114,7 +114,8 @@ import { JwtService } from '@nestjs/jwt';
           send:0, 
           accept:0
         }
-      }, 
+      }
+      /*
       {
         $project:{
           messagesx:{
@@ -160,6 +161,7 @@ import { JwtService } from '@nestjs/jwt';
           }
         }
       }
+      */
     ])
   }
 

@@ -153,6 +153,24 @@ import { JwtService } from '@nestjs/jwt';
         $unwind:{
           path:"$messages"
         }
+      }, 
+      {
+        $addFields:{
+          unreadCounter:{
+            $sum:{
+              cond:{
+                if:{
+                  $eq:[
+                    '$messages.read',
+                    false
+                  ]
+                }, 
+                then:1, 
+                else:0
+              }
+            }
+          }
+        }
       }
       /*
       {

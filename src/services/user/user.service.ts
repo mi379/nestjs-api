@@ -93,6 +93,10 @@ import { JwtService } from '@nestjs/jwt';
                 {
                   sender:user, 
                   accept:"$usersRef"
+                }, 
+                {
+                  sender:"$usersRef", 
+                  accept:user
                 }
               ]
             }

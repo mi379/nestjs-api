@@ -93,6 +93,9 @@ import { JwtService } from '@nestjs/jwt';
                 {$and:[
                   {sender:{
                     $in:[user] 
+                  }},
+                  {accept:{
+                    $in:["$usersRef"]
                   }}
                 ]}, 
               ]

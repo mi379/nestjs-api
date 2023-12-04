@@ -124,11 +124,11 @@ import { JwtService } from '@nestjs/jwt';
                 $or:[{
                   $and:[
                     {$eq:[
-                      "$$messages.sender", 
+                      "$messages.sender", 
                       user
                     ]}, 
                     {$eq:[
-                      "$$messages.accept", 
+                      "$messages.accept", 
                       "$usersRef"
                     ]}
                   ]

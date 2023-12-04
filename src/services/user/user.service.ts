@@ -156,7 +156,8 @@ import { JwtService } from '@nestjs/jwt';
       }, 
       {
         $group:{
-          _id:"$messages.groupId"
+          _id:"$messages.groupId", 
+          messages:{$last:'$messages'}
         }
       }
       /*

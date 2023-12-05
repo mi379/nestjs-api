@@ -83,8 +83,11 @@ import { JwtService } from '@nestjs/jwt';
           $regex: new RegExp(
             `^${v}`, "i"
           )
+        }, 
+        usersRef:{
+          $ne:user
         }
-      }}, 
+      }},
       {$lookup:{
         as:"send", 
         from:"messages",

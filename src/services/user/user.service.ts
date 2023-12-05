@@ -76,10 +76,14 @@ import { JwtService } from '@nestjs/jwt';
     ])
   }
 
-  search(user:Types.ObjectId,firstName:string):Aggregate<any[]>{
+  search(user:Types.ObjectId,v:string):Aggregate<any[]>{
     return this.profile.aggregate([
       {$match:{
-        firstName
+        firstName:{
+          $regex: new RegExp(
+            `^${v}`, "i"
+          )
+        }
       }}, 
       {$lookup:{
         as:"send", 

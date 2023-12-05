@@ -161,6 +161,14 @@ import { JwtService } from '@nestjs/jwt';
             -1
           ]
         }
+      }}, 
+      {$addFields:{
+        messages:{
+          $arrayElemAt:[
+            "$messages", 
+            0
+          ]
+        }
       }}
       /*
       {

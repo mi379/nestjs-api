@@ -169,6 +169,9 @@ import { JwtService } from '@nestjs/jwt';
             0
           ]
         }
+      }}, 
+      {$project:{
+        messages:0
       }}
       /*
       {

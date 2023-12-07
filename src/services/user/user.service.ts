@@ -172,6 +172,14 @@ import { JwtService } from '@nestjs/jwt';
       }}, 
       {$project:{
         messages:0
+      }}, 
+      {$addFields:{
+        message:{
+          $mergeObject[
+            '$message',
+            '$unreadCounter'
+          ]
+        }
       }}
       /*
       {

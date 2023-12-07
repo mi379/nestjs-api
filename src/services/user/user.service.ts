@@ -182,6 +182,9 @@ import { JwtService } from '@nestjs/jwt';
             }
           ]
         }
+      }}, 
+      {$project:{
+        unreadCounter:0
       }}
       /*
       {

@@ -169,70 +169,7 @@ import { JwtService } from '@nestjs/jwt';
             0
           ]
         }
-      }}, 
-      {$project:{
-        messages:0
-      }}, 
-      {$addFields:{
-        message:{
-          $mergeObjects:[
-            '$message',
-            {
-              unreadCounter:'$unreadCounter'
-            }
-          ]
-        }
-      }}, 
-      {$project:{
-        unreadCounter:0
       }}
-      /*
-      {
-        $project:{
-          messagesx:{
-            $filter:{
-              input:"$messages",
-              cond:{
-                $or:[
-                  {
-                    $and:[
-                      {
-                        $eq:[
-                          "$$messages.sender", 
-                          user
-                        ]
-                      }, 
-                      {
-                        $eq:[
-                          "$$messages.accept", 
-                          "$usersRef"
-                        ]
-                      }
-                    ]
-                  }, 
-                  {
-                    $and:[
-                      {
-                        $eq:[
-                          "$$messages.sender", 
-                          "$usersRef"
-                        ]
-                      }, 
-                      {
-                        $eq:[
-                          "$$messages.accept", 
-                          user
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          }
-        }
-      }
-      */
     ])
   }
 

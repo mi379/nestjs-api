@@ -79,7 +79,7 @@ import { InjectModel } from '@nestjs/mongoose'
     ])
   }
   
-  async getById(_id:Types.ObjectId):Promise<any>{
+  async getById(_id:Types.ObjectId):Promise<WithProfile[]>{
     return this.message.aggregate([
       {$match:{
         _id

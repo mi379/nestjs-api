@@ -17,7 +17,7 @@ import { AuthGuard } from '../../auth.guard'
 import { ReadDto } from '../../dto/read.dto'
 import { MessageDto } from '../../dto/message.dto'
 import { EventsGateway } from '../../gateways/events/events.gateway'
-import { Doc,New } from '../../services/message/message.service'
+import { Doc,New,WithProfile} from '../../services/message/message.service'
 import { MessageService,Last,Created } from '../../services/message/message.service'
 
 
@@ -112,11 +112,11 @@ export class MessageController {
         accept
       })
       
-      var expanded:any = await this.message.getById(
+      var [lookup]:WithProfile[] = await this.message.getById(
         result._id
       )
       
-      console.log(expanded)
+      console.log(lookup)
 
       this.gateway.onSuccessSend<New>(
         result

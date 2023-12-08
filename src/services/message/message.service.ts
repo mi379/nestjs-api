@@ -78,6 +78,32 @@ import { InjectModel } from '@nestjs/mongoose'
       }}
     ])
   }
+  
+  getById(_id:Types.ObjectId):Promise<any>{
+    return this.message.aggregate([
+      {$match:{
+        _id
+      }}, 
+      {$lookup:{
+        from:'profiles', 
+        as:"sender", 
+        localField:"sender", 
+        foreignField:"usersRef", 
+      }}, 
+      {$lookup:{
+        from:'profiles', 
+        as:"accept", 
+        localField:"accept", 
+        foreignField:"usersRef", 
+      }},
+      {$unwind:{
+        path:"$sender"
+      }}, 
+      {$unwind:{
+        path:"$accept"
+      }}
+    ])
+  }
 
   async create(params:New):Promise<Created>{    
     return new this.message(params).save()

@@ -111,6 +111,8 @@ export class MessageController {
         sender,
         accept
       })
+      
+      console.log(result)
 
       this.gateway.onSuccessSend(
         result

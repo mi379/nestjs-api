@@ -79,6 +79,7 @@ import { InjectModel } from '@nestjs/mongoose'
     ])
   }
   
+  /*
   getById(_id:Types.ObjectId):Promise<any>{
     return this.message.aggregate([
       {$match:{
@@ -104,6 +105,7 @@ import { InjectModel } from '@nestjs/mongoose'
       }}
     ])
   }
+  */
 
   async create(params:New):Promise<Created>{    
     return new this.message(params).save()

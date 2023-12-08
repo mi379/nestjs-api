@@ -148,13 +148,15 @@ interface Send{
   description:string
 }
 
-// type of created message (success send procesd)
+// type of created message (success send process)
 
 export type New = Send & {
   _id:Types.ObjectId
 }
 
-type WithProfile = New & {
+// type of created message after lookup to profiles
+
+export type WithProfile = New & {
   sender:Profile, 
   accept:Profile
 }

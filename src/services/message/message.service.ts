@@ -108,7 +108,7 @@ import { InjectModel } from '@nestjs/mongoose'
   */
 
   async newMessage(message:Send):Promise<New>{    
-    return new this.message(message).save()
+    return new this.message(message).save() as New
   }
 
   async updateReadStatus(_id:Types.ObjectId,opts:Omit<ReadDto,"_id">):Promise<Created>{

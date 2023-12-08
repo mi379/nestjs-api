@@ -11,7 +11,7 @@ import { InjectModel } from '@nestjs/mongoose'
   constructor(@InjectModel('Message') private message: Model<MessageSchema>){}
 
 
-  async getAllMessage<Filter>($or:[Filter,Filter]):Promise<Doc[]>{
+  async getAll<Filter>($or:[Filter,Filter]):Promise<Doc[]>{
     return this.message.aggregate([
       {$match:{
         $or
@@ -107,8 +107,8 @@ import { InjectModel } from '@nestjs/mongoose'
   }
   */
 
-  async create(params:New):Promise<Created>{    
-    return new this.message(params).save()
+  async newMessage(message:New):Promise<New>{    
+    return new this.message(message).save()
   }
 
   async updateReadStatus(_id:Types.ObjectId,opts:Omit<ReadDto,"_id">):Promise<Created>{
@@ -148,3 +148,4 @@ interface New{
   contentType:string,
   description:string
 }
+

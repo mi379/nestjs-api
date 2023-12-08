@@ -17,7 +17,7 @@ import { AuthGuard } from '../../auth.guard'
 import { ReadDto } from '../../dto/read.dto'
 import { MessageDto } from '../../dto/message.dto'
 import { EventsGateway } from '../../gateways/events/events.gateway'
-import { Doc } from '../../services/message/message.service'
+import { Doc,New } from '../../services/message/message.service'
 import { MessageService,Last,Created } from '../../services/message/message.service'
 
 
@@ -38,7 +38,7 @@ export class MessageController {
     })
 
     try{
-      return  await this.message.getAllMessage<Criteria>(
+      return  await this.message.getAll<Criteria>(
         [
           {
             sender: user,
@@ -105,14 +105,14 @@ export class MessageController {
     )
     
     try{
-      var result:Created = await this.message.create({
+      var result:New = await this.message.newMessage({
         ...dto,
         groupId,
         sender,
         accept
       })
       
-      console.log(result)
+      console.log(result._id)
 
       this.gateway.onSuccessSend(
         result

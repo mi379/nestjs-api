@@ -105,14 +105,14 @@ export class MessageController {
     )
     
     try{
-      var result:New = await this.message.newMessage({
+      var result = await this.message.newMessage({
         ...dto,
         groupId,
         sender,
         accept
       })
       
-      console.log(result._id)
+      console.log(result)
 
       this.gateway.onSuccessSend(
         result

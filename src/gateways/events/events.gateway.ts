@@ -54,3 +54,14 @@ export class EventsGateway<Type> implements OnGatewayConnection {
     // console.log('connected to a client')
   }
 }
+
+interface Message {
+  _id:string, 
+  sender:string, 
+  accept:string, 
+  groupId:string, 
+  value:string, 
+  read:boolean, 
+  contentType:string, 
+  description?:string
+}

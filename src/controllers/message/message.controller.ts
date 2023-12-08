@@ -112,7 +112,11 @@ export class MessageController {
         accept
       })
       
+      var expanded:any = await this.message.getById(
+        result._id
+      )
       
+      console.log(expanded)
 
       this.gateway.onSuccessSend<New>(
         result

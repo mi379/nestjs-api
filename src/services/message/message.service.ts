@@ -107,7 +107,7 @@ import { InjectModel } from '@nestjs/mongoose'
   }
   */
 
-  async newMessage(message:New):Promise<New>{    
+  async newMessage(message:Send):Promise<New>{    
     return new this.message(message).save()
   }
 
@@ -138,7 +138,7 @@ export type Doc = MessageSchema & {
 
 // type of send new message object
 
-export interface New{
+interface Send{
   groupId:Types.ObjectId,
   sender:Types.ObjectId,
   accept:Types.ObjectId,
@@ -149,3 +149,7 @@ export interface New{
   description:string
 }
 
+export type New = Send & {
+  _id:types.ObjectId, 
+  __v:number
+}

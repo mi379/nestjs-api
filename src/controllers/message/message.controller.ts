@@ -112,9 +112,9 @@ export class MessageController {
         accept
       })
       
-      console.log(result)
+      console.log(result._id)
 
-      this.gateway.onSuccessSend(
+      this.gateway.onSuccessSend<New>(
         result
       )
 

@@ -34,7 +34,7 @@ export class EventsGateway<Type> implements OnGatewayConnection {
     ) 
   }
   
-  onSuccessSend(document:any){
+  onSuccessSend<New>(document:New){
     this.server.emit(
       'newMessage',
       document

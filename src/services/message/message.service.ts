@@ -150,6 +150,6 @@ interface Send{
 }
 
 export type New = Send & {
-  _id:types.ObjectId, 
+  _id:Types.ObjectId, 
   __v:number
 }

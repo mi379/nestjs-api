@@ -40,6 +40,13 @@ export class EventsGateway<Type> implements OnGatewayConnection {
       document
     )
   }
+  
+  isFirstMessage<Message>(message:Message){
+    this.server.emit(
+      'isFirstMessage', 
+      message
+    )
+  }
 
   onReadByOther(_id:string){
     

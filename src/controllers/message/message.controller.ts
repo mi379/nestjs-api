@@ -116,7 +116,9 @@ export class MessageController {
         result._id
       )
       
-      console.log(lookup)
+      this.gateway.isFirstMessage<WithProfile>(
+        lookup
+      )
 
       this.gateway.onSuccessSend<New>(
         result

@@ -116,12 +116,10 @@ export class MessageController {
         result._id
       )
       
-      this.gateway.isFirstMessage<WithProfile>(
-        lookup
-      )
 
-      this.gateway.onSuccessSend<New>(
-        result
+
+      this.gateway.onSuccessSend<New,WithProfile>(
+        result,lookup
       )
 
       return result

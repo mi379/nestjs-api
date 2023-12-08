@@ -148,7 +148,13 @@ interface Send{
   description:string
 }
 
+// type of created message (success send procesd)
+
 export type New = Send & {
-  _id:Types.ObjectId, 
-  __v:number
+  _id:Types.ObjectId
+}
+
+type WithProfile = New & {
+  sender:Profile, 
+  accept:Profile
 }

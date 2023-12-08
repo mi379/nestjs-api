@@ -138,7 +138,7 @@ export type Doc = MessageSchema & {
 
 // type of send new message object
 
-interface New{
+export interface New{
   groupId:Types.ObjectId,
   sender:Types.ObjectId,
   accept:Types.ObjectId,

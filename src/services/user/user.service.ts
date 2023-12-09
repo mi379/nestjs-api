@@ -143,7 +143,8 @@ import { JwtService } from '@nestjs/jwt';
             }
           }
         }
-      }}, 
+      }}
+      /*
       {$addFields:{
         unreadCounter: {
           $size:{
@@ -173,6 +174,7 @@ import { JwtService } from '@nestjs/jwt';
       {$project:{
         messages:0
       }}
+      */
     ])
   }
 

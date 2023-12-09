@@ -145,7 +145,22 @@ import { JwtService } from '@nestjs/jwt';
         }
       }}, 
       {$addFields:{
-        message:{$max:"$messages"}
+        unreadCounter: {
+          $size:{
+            $filter:{
+              input: "$messages",
+              cond: { $eq: ["$$this.read", false] }
+            }
+          }
+        }
+      }}, 
+      {$addFields:{
+        message:{
+          $max:"$messages"
+        }
+      }}, 
+      {$project:{
+        messages:0
       }}
       /*
       {$addFields:{

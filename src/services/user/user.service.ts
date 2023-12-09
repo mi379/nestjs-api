@@ -143,6 +143,9 @@ import { JwtService } from '@nestjs/jwt';
             }
           }
         }
+      }}, 
+      {$addFields:{
+        message:{$max:"$messages"}
       }}
       /*
       {$addFields:{

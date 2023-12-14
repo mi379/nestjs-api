@@ -1,4 +1,5 @@
 import { UseGuards,Request,Param,Logger,Controller,Get,Post,Body,HttpException,Header,InternalServerErrorException } from '@nestjs/common';
+import { OAuth2Client } from 'google-auth-library'
 import { AuthGuard } from '../../auth.guard'
 import { UserService,Detail } from '../../services/user/user.service'
 import { CommonService } from '../../services/common/common.service';
@@ -10,7 +11,6 @@ import { Types } from 'mongoose'
 @Controller('user') 
 
 export class UserController {
- 
 
   @Post('login') async login(@Body() dto:LoginDto):Promise<Headers & Detail>{
 
@@ -84,6 +84,21 @@ export class UserController {
       throw new InternalServerErrorException() 
     }
   }
+
+ @Get('oauth') googleOauthAuthorize():string{
+   var oauth2Client = new OAuth2Client(
+     process.env.CLIENT_ID, 
+     process.env.CLIENT_SECRET, 
+     process.env.REDIRECT
+   ) 
+
+   var url = oAuth2Client.generateAuthUrl({
+     access_type: 'offline',
+     scope: 'https://www.googleapis.com/auth/userinfo.profile',
+   });
+
+   return url
+ }
 
   @Get('hello') responseWithHello():string{
     return 'hello'

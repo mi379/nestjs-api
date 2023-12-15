@@ -41,7 +41,7 @@ export class OauthController {
      
      oauth2Client.setCredential(authenticated.tokens)
      
-     var name = await oauth2Client.request({url})
+     var name = await oauth2Client.request({url:x})
      
      return name
     

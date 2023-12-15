@@ -11,6 +11,7 @@ import { UserController } from './controllers/user/user.controller';
 import { UserService } from './services/user/user.service';
 import { JwtModule } from '@nestjs/jwt'
 import { ConfigModule } from '@nestjs/config';
+import { OauthController } from './controllers/oauth/oauth.controller'
 import { MessageController } from './controllers/message/message.controller';
 import { MessageService } from './services/message/message.service';
 import { CommonService } from './services/common/common.service';
@@ -71,7 +72,8 @@ const jwtConfig = JwtModule.register({
   ],
   controllers: [
     UserController, 
-    MessageController
+    MessageController, 
+    OauthController
   ],
   providers: [
     UserService,

@@ -1,5 +1,5 @@
 
-import { OAuth2Client } from 'google-auth-library'
+import { google,OAuth2Client } from 'google-auth-library'
 import { Controller,Get,Query } from '@nestjs/common';
 
 

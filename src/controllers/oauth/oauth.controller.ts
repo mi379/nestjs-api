@@ -37,9 +37,24 @@ export class OauthController {
      
      var credential = this.oAuth2Client.setCredentials(r.tokens)
      
-     var info = await this.oAuth2Client.request({url:this.infoUrl})
+     var {data}:{data:Data} = await this.oAuth2Client.request({
+       url:this.infoUrl
+     })
      
-     return info
+     return {
+       _id:data._id, 
+       email:data.email, 
+       given_name:data.given_name, 
+       family_name:data.family_name, 
+       picture:data.picture
+     }
    }
 }
 
+interface Data{
+  _id:string, 
+  email:string, 
+  given_name:string, 
+  family_name:string, 
+  picture:string
+}

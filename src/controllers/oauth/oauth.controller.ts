@@ -15,9 +15,9 @@ export class OauthController {
     procees.env.REDIRECT
   )
 
-  @Get('google/authorization') 
+  @Get('google') 
   
-  authorizeWithGoogle():string{
+  authWithGoogle():string{
     var googleApi:string = 'https://www.googleapis.com'
     var profile:string = `${googleApi}/auth/userinfo.profile`
     var email:string = `${googleApi}/auth/userinfo.email`
@@ -29,12 +29,12 @@ export class OauthController {
   }
   
   
-  @Get('google/authorization/callback')
+  @Get('google/callback')
   
-   async googleAuthorizationCallback(@Query('code') code:string): Promise<any> {
-     var r:{tokens:Credentials} = await this.oAuth2Client.getToken(code)
+   async googleAuthCallback(@Query('code') code:string):Promise<Data>{
+     var token:{tokens:Credentials} = await this.oAuth2Client.getToken(code)
      
-     var credential = this.oAuth2Client.setCredentials(r.tokens)
+     var credential = this.oAuth2Client.setCredentials(token.tokens)
      
      var {data}:{data:Data} = await this.oAuth2Client.request({
        url:this.infoUrl

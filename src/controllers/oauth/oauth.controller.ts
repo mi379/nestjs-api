@@ -1,6 +1,6 @@
 
 import { OAuth2Client } from 'google-auth-library'
-import { Controller,Get } '@nestjs/common';
+import { Controller,Get } from '@nestjs/common';
 
 
 @Controller('oauth') 

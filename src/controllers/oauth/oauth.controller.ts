@@ -35,16 +35,14 @@ export class OauthController {
        'https://nestjs-api-production-f720.up.railway.app/oauth/authorize/google/callback'
      )
      
-     var x = 'https://people.googleapis.com/v1/people/me?personFields=names'
+     var x = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json'
      
      var authenticated = await oauth2Client.getToken(code)
      
      oauth2Client.setCredentials(authenticated.tokens)
      
-     var name = await oauth2Client.request({url:x})
+     var info = await oauth2Client.request({url:x})
      
-     return name
-    
-     
+     return info
    }
 }

@@ -86,13 +86,13 @@ export class UserController {
   }
 
  @Get('oauth') googleOauthAuthorize():string{
-   var oauth2Client = new OAuth2Client(
+   var oauth = new OAuth2Client(
      process.env.CLIENT_ID, 
      process.env.CLIENT_SECRET, 
      process.env.REDIRECT
    ) 
 
-   var url = oAuth2Client.generateAuthUrl({
+   var url = oauth.generateAuthUrl({
      access_type: 'offline',
      scope: 'https://www.googleapis.com/auth/userinfo.profile',
    });

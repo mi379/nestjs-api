@@ -7,13 +7,12 @@ import { Controller,Get,Query } from '@nestjs/common';
   
 export class OauthController {
                     
-  redirect:string = 'https://nestjs-api-production-f720.up.railway.app/oauth/authorize/google/callback'
   infoUrl:string = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json'
   
   oAuth2Client:OAuth2Client = new OAuth2Client(
     process.env.CLIENT_ID, 
     process.env.CLIENT_SECRET, 
-    'https://nestjs-api-production-f720.up.railway.app/oauth/authorize/google/callback'
+    "https://nestjs-api-production-f720.up.railway.app/oauth/authorize/google/callback"
   )
 
   @Get('authorize/google') 

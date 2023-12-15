@@ -1,5 +1,5 @@
 
-import { OAuth2Client,Credential} from 'google-auth-library'
+import { OAuth2Client,Credentials } from 'google-auth-library'
 import { Controller,Get,Query } from '@nestjs/common';
 
 
@@ -33,9 +33,9 @@ export class OauthController {
   @Get('authorize/google/callback')
   
    async googleAuthorizationCallback(@Query('code') code:string): Promise<any> {
-     var {tokens}:{tokens:string} = await this.oAuth2Client.getToken(code)
+     var r:{tokens:Credentials} = await this.oAuth2Client.getToken(code)
      
-     var credential = this.oAuth2Client.setCredentials(tokens as Credential)
+     var credential = this.oAuth2Client.setCredentials(r.tokens)
      
      var info = await this.oAuth2Client.request({url:this.infoUrl})
      

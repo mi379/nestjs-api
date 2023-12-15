@@ -22,7 +22,7 @@ export class OauthController {
    
     return oauth2Client.generateAuthUrl({
       access_type:'offline',
-      scope:'${authApi}/userinfo.email'
+      scope:`${authApi}/userinfo.email`
     });
   }
 }

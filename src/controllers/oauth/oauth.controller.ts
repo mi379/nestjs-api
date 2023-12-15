@@ -12,7 +12,7 @@ export class OauthController {
   oAuth2Client:OAuth2Client = new OAuth2Client(
     process.env.CLIENT_ID, 
     process.env.CLIENT_SECRET, 
-    procees.env.REDIRECT
+    process.env.REDIRECT
   )
 
   @Get('google') 

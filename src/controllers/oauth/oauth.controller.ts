@@ -41,7 +41,7 @@ export class OauthController {
      })
      
      return {
-       _id:data._id, 
+       id:data.id, 
        email:data.email, 
        given_name:data.given_name, 
        family_name:data.family_name, 
@@ -51,7 +51,7 @@ export class OauthController {
 }
 
 interface Data{
-  _id:string, 
+  id:string, 
   email:string, 
   given_name:string, 
   family_name:string, 

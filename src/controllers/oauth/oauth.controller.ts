@@ -4,7 +4,8 @@ import { Controller,Get } from '@nestjs/common';
 
 
 @Controller('oauth') 
-export class UserController {
+  
+export class OauthController {
   @Get('authorize/google') authorizeGoogle():string{
     return 'url'
   }

@@ -37,7 +37,7 @@ export class OauthController {
      
      var credential = this.oAuth2Client.setCredentials(tokens)
      
-     var info = await oauth2Client.request({url:this.infoUrl})
+     var info = await this.oauth2Client.request({url:this.infoUrl})
      
      return info
    }

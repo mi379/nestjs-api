@@ -23,7 +23,7 @@ export class OauthController {
     var profile:string = `${googleApi}/auth/userinfo.profile`
     var email:string = `${googleApi}/auth/userinfo.email`
     
-    return this.oauth2Client.generateAuthUrl({
+    return this.oAuth2Client.generateAuthUrl({
       access_type:'offline',
       scope:[email,profile]
     });
@@ -37,7 +37,7 @@ export class OauthController {
      
      var credential = this.oAuth2Client.setCredentials(tokens)
      
-     var info = await this.oauth2Client.request({url:this.infoUrl})
+     var info = await this.oAuth2Client.request({url:this.infoUrl})
      
      return info
    }

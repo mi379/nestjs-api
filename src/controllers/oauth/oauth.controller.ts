@@ -32,7 +32,7 @@ export class OauthController {
      var oauth2Client: OAuth2Client = new OAuth2Client(
        process.env.CLIENT_ID,
        process.env.CLIENT_SECRET,
-       process.env.REDIRECT
+       'https://nestjs-api-production-f720.up.railway.app/oauth/authorize/google/callback'
      )
     
      return code

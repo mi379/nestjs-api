@@ -11,8 +11,8 @@ export class OauthController {
   
   authorizeWithGoogle():string{
     var googleApi:string = 'https://www.googleapis.com'
-    var profile:string   = `${googleApi}/userinfo.profile`
-    var email:string     = `${googleApi}/auth/userinfo.email`
+    var profile:string = `${googleApi}/auth/userinfo.profile`
+    var email:string = `${googleApi}/auth/userinfo.email`
    
     var oauth2Client:OAuth2Client = new OAuth2Client(
       process.env.CLIENT_ID, 

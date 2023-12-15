@@ -12,10 +12,10 @@ export class OauthController {
   oAuth2Client:OAuth2Client = new OAuth2Client(
     process.env.CLIENT_ID, 
     process.env.CLIENT_SECRET, 
-    "https://nestjs-api-production-f720.up.railway.app/oauth/authorize/google/callback"
+    procees.env.REDIRECT
   )
 
-  @Get('authorize/google') 
+  @Get('google/authorization') 
   
   authorizeWithGoogle():string{
     var googleApi:string = 'https://www.googleapis.com'
@@ -29,7 +29,7 @@ export class OauthController {
   }
   
   
-  @Get('authorize/google/callback')
+  @Get('google/authorization/callback')
   
    async googleAuthorizationCallback(@Query('code') code:string): Promise<any> {
      var r:{tokens:Credentials} = await this.oAuth2Client.getToken(code)

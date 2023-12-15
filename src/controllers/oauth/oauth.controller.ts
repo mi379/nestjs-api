@@ -36,7 +36,7 @@ export class OauthController {
      )
     
      var code = '4%2F0AfJohXkDPwqHRJG0GPW0h1ca-Ydbit4urYX8vzHOw2PZSZlGbPjCRoMbRh2UH7gy3UD2dw'
-     var {token} = await oauth2Client.getToken(code as string)
+     var token = await oauth2Client.getToken(code as string)
      
      
      return token

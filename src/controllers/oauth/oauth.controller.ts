@@ -33,7 +33,7 @@ export class OauthController {
   @Get('authorize/google/callback')
   
    async googleAuthorizationCallback(@Query('code') code:string): Promise<any> {
-     var {tokens}:{tokens:string} = await this.oauth2Client.getToken(code)
+     var {tokens}:{tokens:string} = await this.oAuth2Client.getToken(code)
      
      var credential = this.oAuth2Client.setCredentials(tokens)
      

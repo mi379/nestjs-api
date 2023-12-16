@@ -130,7 +130,7 @@ import { JwtService } from '@nestjs/jwt';
     ])
   }
 
-  findByOauthReference(id:string|number):Promise<Detail[]>{
+  findByOauthReference(id:string|number):Aggregate<Detail[]>{
     return this.user.aggregate([
       {$match:{
         oauthReference:id

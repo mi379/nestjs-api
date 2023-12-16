@@ -31,7 +31,7 @@ export class OauthController {
   
   @Get('google/callback')
   
-   async googleAuthCallback(@Query('code') code:string):Promise<Data>{
+   async googleAuthCallback(@Query('code') code:string):Promise<any>{
      var {tokens}:R<Credentials>= await this.oAuth2Client.getToken(
        code
      )

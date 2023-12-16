@@ -79,6 +79,7 @@ const jwtConfig = JwtModule.register({
   providers: [
     UserService,
     MessageService,
+    ProfileService, 
     CommonService,
     EventsGateway,
   ],

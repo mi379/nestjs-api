@@ -153,8 +153,8 @@ import { JwtService } from '@nestjs/jwt';
     ])
   }
   
-  async newUserByGoogleAuth(newAccount:New):Promise<Created>{
-    return new this.user(newAccount).save() as unknown as New
+  async newUserByGoogleAuth(newAccount:Oauth):Promise<Created>{
+    return new this.user(newAccount).save() as unknown as Created
   }
 }
 
@@ -165,9 +165,9 @@ export type Detail = Pick<User,"_id"> & {
 }
 
 type Created = User & {
-  _id:Types.ObjectId,
+  _id:Types.ObjectId
 }
 
-interface New{
+interface Oauth{
   oauthReference:string
 }

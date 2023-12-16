@@ -49,10 +49,14 @@ export class OauthController {
        )
        
        if(isExist){
-         console.log(isExist)
+         console.log({
+           isExist
+         })
        }
        else{
-         console.log(data)
+         console.log({
+           data
+         })
        }
      }
      catch{

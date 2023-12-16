@@ -11,8 +11,7 @@ import { InjectModel } from '@nestjs/mongoose'
 
   
   newProfile(newUserProfile:Profile):Promise<Created>{
-    return new this.profile(newUserProfile).save() as unknown as Created
-  }
+    return new this.profile(newUserProfile).save() 
 }
 
 type Created = Pick<

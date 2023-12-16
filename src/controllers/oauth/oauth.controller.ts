@@ -32,7 +32,9 @@ export class OauthController {
   @Get('google/callback')
   
    async googleAuthCallback(@Query('code') code:string):Promise<Data>{
-     var {tokens}:GetToken = await this.oAuth2Client.getToken(code)
+     var {tokens}:R<Credentials>= await this.oAuth2Client.getToken(
+       code
+     )
      
      var credential = this.oAuth2Client.setCredentials(tokens)
      
@@ -50,8 +52,8 @@ export class OauthController {
    }
 }
 
-inteface GetToken{
-  tokens:Credential
+interface R<T>{
+  tokens:T
 }
                             
 interface Data{

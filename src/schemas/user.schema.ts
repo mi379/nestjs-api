@@ -6,7 +6,7 @@ import { Types } from 'mongoose'
   _id:Types.ObjectId
   
   @Prop()
-  oauthReference:string|number
+  oauthReference:string
   
   @Prop() 
   username:string

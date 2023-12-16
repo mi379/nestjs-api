@@ -15,7 +15,7 @@ import { InjectModel } from '@nestjs/mongoose'
     return this.message.aggregate([
       {$match:{
         $or
-      }}
+      }} 
     ])
   }
 

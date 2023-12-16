@@ -8,6 +8,7 @@ import { MongooseModule } from '@nestjs/mongoose'
 import { LoggerMiddleware } from './middlewares/logger/logger.middleware'
 import { Module,NestModule,MiddlewareConsumer } from '@nestjs/common';
 import { UserController } from './controllers/user/user.controller';
+import { ProfileService } from './services/profile/profile.service'
 import { UserService } from './services/user/user.service';
 import { JwtModule } from '@nestjs/jwt'
 import { ConfigModule } from '@nestjs/config';

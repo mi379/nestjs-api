@@ -15,7 +15,6 @@ import { JwtService } from '@nestjs/jwt';
   ){}
 
 
-
   login(body:LoginDto):Aggregate<Detail[]>{
     return this.user.aggregate([
       {$match:{
@@ -153,6 +152,10 @@ import { JwtService } from '@nestjs/jwt';
       }}
     ])
   }
+  
+  async newUserByGoogleAuth(newAccount:New):Promise<Created>{
+    return new this.user(newAccount).save() as unknown as New
+  }
 }
 
 type Omited = Omit<Profile,"_id"|"usersRef">
@@ -161,3 +164,10 @@ export type Detail = Pick<User,"_id"> & {
   profile:Omited
 }
 
+type Created = UserSchema & {
+  _id:Types.ObjectId,
+}
+
+interface New{
+  oauthReference:string
+}

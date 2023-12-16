@@ -54,9 +54,8 @@ export class OauthController {
          })
        }
        else{
-         console.log({
-           data
-         })
+         // menambahkan user baru berdasarkan data oauth
+         
        }
      }
      catch{

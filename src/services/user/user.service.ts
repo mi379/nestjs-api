@@ -164,7 +164,7 @@ export type Detail = Pick<User,"_id"> & {
   profile:Omited
 }
 
-type Created = UserSchema & {
+type Created = User & {
   _id:Types.ObjectId,
 }
 

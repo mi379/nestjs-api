@@ -5,11 +5,15 @@ import { Profile } from '../../schemas/profile.schema'
 import { InjectModel } from '@nestjs/mongoose'
 
 
-@Injectable() export class ProfileService<T> {
+@Injectable() export class ProfileService {
 
   constructor(
-    @InjectModel('Profile') private profile: Model<T>
+    @InjectModel('Profile') private profile: Model<Profile>
   ){}
+  
+  newProfile(newUserProfile:Profile):Promise<Profile>{
+    return new this.profile.save(newUserProfile) as unknown as Profile
+  }
 }
 
 

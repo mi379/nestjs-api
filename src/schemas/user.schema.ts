@@ -9,10 +9,10 @@ import { Types } from 'mongoose'
   oauthReference:string
   
   @Prop() 
-  username:string
+  username?:string
  
   @Prop() 
-  password:string
+  password?:string
 }
 
 

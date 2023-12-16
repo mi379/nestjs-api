@@ -14,42 +14,7 @@ import { JwtService } from '@nestjs/jwt';
     @InjectModel('Profile') private profile : Model<Profile>
   ){}
 
-  // login(body:LoginDto):Promise<Detail[]>{
-    
-  //   return new Promise(async (resolve,reject) => {
-  //     try{
-  //       var result = await this.user.aggregate([
-  //         {$match:{
-  //           ...body,
-  //         }},
-  //         {$lookup:{
-  //           from:"profiles",
-  //           localField:"_id",
-  //           foreignField:"usersRef",
-  //           as:"profile",
-  //         }},
-  //         {$unwind:{
-  //           path:"$profile",
-  //         }},
-  //         {$project:{
-  //           username:0,
-  //           password:0,
-  //           profile:{
-  //             _id:0,
-  //             usersRef:0
-  //           }
-  //         }}
-  //       ])
-  //       resolve(
-  //         result
-  //       )
-  //     }
-  //     catch(err:unknown){
-  //       reject(err)
-  //     }
-  //   })
 
-  // }
 
   login(body:LoginDto):Aggregate<Detail[]>{
     return this.user.aggregate([
@@ -162,41 +127,32 @@ import { JwtService } from '@nestjs/jwt';
       {$project:{
         messages:0
       }}
-      /*
-      {$addFields:{
-        unreadCounter: {
-          $size:{
-            $filter:{
-              input: "$messages",
-              cond: { $eq: ["$$this.read", false] }
-            }
-          }
-        }
-      }},
-      {$addFields:{
-        messages:{
-          $slice:[
-            "$messages", 
-            -1
-          ]
-        }
-      }}, 
-      {$addFields:{
-        message:{
-          $arrayElemAt:[
-            "$messages", 
-            0
-          ]
-        }
-      }}, 
-      {$project:{
-        messages:0
-      }}
-      */
     ])
   }
 
-  
+  findByOauthReference(id:string|number):Promise<Detail[]>{
+    return this.user.aggregate([
+      {$match:{
+        oauthReference:id
+      }}, 
+      {$lookup:{
+        from:"profiles",
+        localField:"_id",
+        foreignField:"usersRef",
+        as:"profile",
+      }},
+      {$unwind:{
+        path:"$profile",
+      }},
+      {$project:{
+        oauthReference:0,
+        profile:{
+          _id:0,
+          usersRef:0
+        }
+      }}
+    ])
+  }
 }
 
 type Omited = Omit<Profile,"_id"|"usersRef">

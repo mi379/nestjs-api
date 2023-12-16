@@ -1,6 +1,7 @@
 
 import { OAuth2Client,Credentials } from 'google-auth-library'
 import { Controller,Get,Query } from '@nestjs/common';
+import { UserService,Detail } from '../../services/user/user.service'
 
 
 @Controller('oauth') 
@@ -12,7 +13,7 @@ export class OauthController {
   oAuth2Client:OAuth2Client = new OAuth2Client(
     process.env.CLIENT_ID, 
     process.env.CLIENT_SECRET, 
-    'https://nestjs-api-production-f720.up.railway.app/oauth/google/callback'
+    process.env.REDIRECT
   )
 
   @Get('google') 
@@ -38,17 +39,32 @@ export class OauthController {
      
      var credential = this.oAuth2Client.setCredentials(tokens)
      
-     var {data}:{data:Data} = await this.oAuth2Client.request({
-       url:this.infoUrl
-     })
-     
-     return {
-       id:data.id, 
-       firstName:data.given_name, 
-       surname:data.family_name, 
-       picture:data.picture
+     try{
+       var {data}:{data:Data} = await this.oAuth2Client.request({
+         url: this.infoUrl
+       })
+       
+       var [isExist] = await this.userSvc.findByOauthReference(
+         data.id
+       )
+       
+       if(isExist){
+         console.log(isExist)
+       }
+       else{
+         console.log(data)
+       }
      }
+     catch{
+       
+     }
+     
+     return 'x'
    }
+   
+   constructor(
+     private userSvc:UserService
+   ){}
 }
 
 interface R<T>{

@@ -13,7 +13,7 @@ export class OauthController {
   oAuth2Client:OAuth2Client = new OAuth2Client(
     process.env.CLIENT_ID, 
     process.env.CLIENT_SECRET, 
-    process.env.REDIRECT
+    'https://nestjs-api-production-f720.up.railway.app/oauth/google/callback'
   )
 
   @Get('google') 

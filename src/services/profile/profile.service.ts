@@ -7,9 +7,8 @@ import { InjectModel } from '@nestjs/mongoose'
 
 @Injectable() export class ProfileService {
 
-  constructor(
-    @InjectModel('Profile') private profile: Model<Profile>
-  ){}
+  constructor(@InjectModel('Profile') private profile : Model<Profile>){}
+
   
   newProfile(newUserProfile:Profile):Promise<Profile>{
     return new this.profile(newUserProfile).save() as unknown as Profile

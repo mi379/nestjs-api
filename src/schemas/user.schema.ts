@@ -3,10 +3,10 @@ import { Types } from 'mongoose'
 
 @Schema() export class User{
   @Prop()
-  _id:Types.ObjectId
+  _id?:Types.ObjectId
   
   @Prop()
-  oauthReference:string
+  oauthReference?:string
   
   @Prop() 
   username?:string

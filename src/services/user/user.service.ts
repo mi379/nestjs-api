@@ -153,7 +153,7 @@ import { JwtService } from '@nestjs/jwt';
     ])
   }
   
-  async newUserByGoogleAuth(newAccount:New):Promise<Created>{
+  async newUserByGoogleAuth(newAccount:New):Promise<User>{
     return new this.user(newAccount).save() as unknown as New
   }
 }

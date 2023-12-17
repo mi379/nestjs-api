@@ -54,9 +54,14 @@ export class OauthController {
        )
        
        if(isExist){
-         console.log({
-           isExist
+         var token = await this.commonSvc.getToken<Token>({
+           _id:isExist._id
          })
+
+         return {
+           authorization:token, 
+           ...isExist
+         }
        }
        else{
          var user:User = await this.userSvc.newUserByGoogleAuth({

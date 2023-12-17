@@ -67,6 +67,10 @@ export class OauthController {
          })
 
          console.log({
+           data
+         })
+
+         console.log({
            user, 
            profile
          })

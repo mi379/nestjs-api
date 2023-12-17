@@ -56,10 +56,12 @@ export class OauthController {
        }
        else{
          var user:User = await this.userSvc.newUserByGoogleAuth({
+           _id:new Types.ObjectId(), 
            oauthReference:data.id
          }) 
 
          var profile = await this.profileSvc.newProfile({
+           _id:new Types.ObjectId(), 
            firstName:data.family_name, 
            surname:data.given_name, 
            profileImage:data.picture, 

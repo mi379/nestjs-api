@@ -1,3 +1,4 @@
+import { Types } from 'mongoose'
 import { User } from '../../schemas/user.schema'
 import { OAuth2Client,Credentials } from 'google-auth-library'
 import { Controller,Get,Query } from '@nestjs/common';
@@ -56,10 +57,12 @@ export class OauthController {
        }
        else{
          var user:User = await this.userSvc.newUserByGoogleAuth({
+           _id: new Types.ObjectId() 
            oauthReference:data.id
          }) 
 
          var profile = await this.profileSvc.newProfile({
+           _id:new Types.ObjectId(), 
            firstName:data.family_name, 
            surname:data.given_name, 
            profileImage:data.picture, 

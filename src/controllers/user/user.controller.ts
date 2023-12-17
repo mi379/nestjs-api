@@ -132,7 +132,7 @@ interface Headers{
   authorization:string
 }
 
-interface Token{
+export interface Token{
   _id:Types.ObjectId | undefined
 }
 

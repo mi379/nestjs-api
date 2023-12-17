@@ -71,6 +71,8 @@ export class OauthController {
            profileImage:data.picture, 
            usersRef:user._id
          })   
+
+         var {_doc}:Document = profile as unknown as Document
          
          let token = await this.commonSvc.getToken<Token>({
            _id:user._id

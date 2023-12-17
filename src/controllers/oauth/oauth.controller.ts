@@ -81,7 +81,7 @@ export class OauthController {
          console.log({
            authorization:token,
            _id:user._id, 
-           profile:profile._doc
+           profile:_doc
          })
         
          

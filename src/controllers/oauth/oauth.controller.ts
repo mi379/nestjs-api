@@ -55,9 +55,9 @@ export class OauthController {
          })
        }
        else{
-         var user:User = await this.userSvc.newUserByGoogleAuth(
-           data.id
-         ) 
+         var user:User = await this.userSvc.newUserByGoogleAuth({
+           oauthReference:data.id
+         }) 
 
          var profile = await this.profileSvc.newProfile({
            firstName:data.family_name, 

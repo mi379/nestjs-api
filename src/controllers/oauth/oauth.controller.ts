@@ -5,6 +5,7 @@ import { OAuth2Client,Credentials } from 'google-auth-library'
 import { Controller,Get,Query } from '@nestjs/common';
 import { ProfileService } from '../../services/profile/profile.service'
 import { UserService,Detail } from '../../services/user/user.service'
+import { CommonService } from '../../services/common/common.service';
 
 
 @Controller('oauth') 
@@ -91,7 +92,7 @@ export class OauthController {
    constructor(
      private userSvc:UserService,
      private profileSvc:ProfileService
-     
+     private commonSvc:CommonService
    ){}
 }
 

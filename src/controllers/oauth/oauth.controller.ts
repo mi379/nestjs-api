@@ -73,7 +73,9 @@ export class OauthController {
          })   
 
          var {_doc}:Document = profile as unknown as Document
-         
+
+         var {_id,usersRef,...r}:Profile = doc
+        
          let token = await this.commonSvc.getToken<Token>({
            _id:user._id
          })
@@ -81,7 +83,7 @@ export class OauthController {
          console.log({
            authorization:token,
            _id:user._id, 
-           profile:_doc
+           profile:r
          })
         
          

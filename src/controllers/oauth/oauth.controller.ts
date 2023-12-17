@@ -49,7 +49,6 @@ export class OauthController {
          url: this.infoUrl
        })
        
-       console.log({data})
        
        var [isExist] = await this.userSvc.findByOauthReference(
          data.id
@@ -73,8 +72,8 @@ export class OauthController {
 
          var profile:Profile = await this.profileSvc.newProfile({
            _id:user._id, 
-           firstName:data.family_name, 
-           surname:data.given_name, 
+           firstName:data.name.split(" ")[0], 
+           surname:data.name.split(" ")[1], 
            profileImage:data.picture, 
            usersRef:user._id
          })   
@@ -113,8 +112,7 @@ interface R<T>{
 interface Data{
   id:string, 
   email:string, 
-  given_name:string, 
-  family_name:string, 
+  name:string, 
   picture:string
 }
 

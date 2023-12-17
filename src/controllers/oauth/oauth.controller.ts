@@ -49,6 +49,8 @@ export class OauthController {
          url: this.infoUrl
        })
        
+       console.log({data})
+       
        var [isExist] = await this.userSvc.findByOauthReference(
          data.id
        )

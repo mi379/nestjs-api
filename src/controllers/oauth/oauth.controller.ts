@@ -62,7 +62,7 @@ export class OauthController {
          }) 
 
          var profile = await this.profileSvc.newProfile({
-           _id:new Types.ObjectId(), 
+           _id:user._id, 
            firstName:data.family_name, 
            surname:data.given_name, 
            profileImage:data.picture, 

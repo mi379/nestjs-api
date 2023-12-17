@@ -91,7 +91,7 @@ export class OauthController {
    
    constructor(
      private userSvc:UserService,
-     private profileSvc:ProfileService
+     private profileSvc:ProfileService, 
      private commonSvc:CommonService
    ){}
 }

@@ -1,6 +1,7 @@
-
+import { User } '../../schema/user.schema'
 import { OAuth2Client,Credentials } from 'google-auth-library'
 import { Controller,Get,Query } from '@nestjs/common';
+import { ProfileServivc
 import { UserService,Detail } from '../../services/user/user.service'
 
 
@@ -54,7 +55,7 @@ export class OauthController {
          })
        }
        else{
-         // menambahkan user baru berdasarkan data oauth
+         
          
        }
      }

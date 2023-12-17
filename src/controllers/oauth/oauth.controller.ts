@@ -61,7 +61,7 @@ export class OauthController {
 
          var profile = await this.profileSvc({
            firstName:data.familyName, 
-           surname:data.givenName, 
+           surname:data.given_name, 
            profileImage:data.picture, 
            usersRef:user._id
          }) 

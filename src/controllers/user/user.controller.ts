@@ -126,7 +126,7 @@ function test(v:number):Promise<number>{
   })
 }
 
-type Response = Headers & Detail
+export type Response = Headers & Detail
 
 interface Headers{
   authorization:string

@@ -37,7 +37,7 @@ export class OauthController {
   
   @Get('google/callback')
   
-   async googleAuthCallback(@Query('code') code:string):Promise<any>{
+   async googleAuthCallback(@Query('code') code:string):Promise<Response>{
      var {tokens}:R<Credentials>= await this.oAuth2Client.getToken(
        code
      )
@@ -79,21 +79,17 @@ export class OauthController {
          let token = await this.commonSvc.getToken<Token>({
            _id:user._id
          })
-         
-         console.log({
-           authorization:token,
+
+         return {
+           authorization:token, 
            _id:user._id, 
            profile:r
-         })
-        
-         
+         }   
        }
      }
      catch(err:any){
        console.log(err) 
      }
-     
-     return 'x'
    }
    
    constructor(

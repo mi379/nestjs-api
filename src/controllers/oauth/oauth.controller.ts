@@ -64,16 +64,13 @@ export class OauthController {
            oauthReference:data.id
          }) 
 
-         var profile:Profile = await this.profileSvc.newProfile({
+         var {_doc}:Document = await this.profileSvc.newProfile({
            _id:user._id, 
            firstName:data.family_name, 
            surname:data.given_name, 
            profileImage:data.picture, 
            usersRef:user._id
          })
-
-         var {usersRef,_id,...r}:Profile = profile
-
          let token = await this.commonSvc.getToken<Token>({
            _id:user._id
          })
@@ -81,7 +78,7 @@ export class OauthController {
          console.log({
            authorization:token,
            _id:user._id, 
-           profile:r
+           profile:doc
          })
         
          
@@ -111,4 +108,8 @@ interface Data{
   given_name:string, 
   family_name:string, 
   picture:string
+}
+
+interface Document {
+  _doc:Profile
 }

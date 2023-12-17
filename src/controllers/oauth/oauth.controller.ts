@@ -64,7 +64,12 @@ export class OauthController {
            surname:data.given_name, 
            profileImage:data.picture, 
            usersRef:user._id
-         }) 
+         })
+
+         console.log({
+           user, 
+           profile
+         })
          
        }
      }

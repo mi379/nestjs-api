@@ -164,10 +164,7 @@ export type Detail = Pick<User,"_id"> & {
   profile:Omited
 }
 
-type Created = User & {
-  _id:Types.ObjectId
-}
-
 interface Oauth{
+  _id:Types.ObjectId
   oauthReference:string
 }

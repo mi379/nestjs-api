@@ -77,8 +77,8 @@ export class OauthController {
          
        }
      }
-     catch{
-       
+     catch(err:any){
+       console.log(err) 
      }
      
      return 'x'

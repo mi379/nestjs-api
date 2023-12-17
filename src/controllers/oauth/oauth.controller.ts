@@ -1,6 +1,7 @@
 import { User } from '../../schemas/user.schema'
 import { OAuth2Client,Credentials } from 'google-auth-library'
 import { Controller,Get,Query } from '@nestjs/common';
+import { ProfileService } from '../../services/profile/profile.service'
 import { UserService,Detail } from '../../services/user/user.service'
 
 
@@ -54,7 +55,11 @@ export class OauthController {
          })
        }
        else{
-         
+         var user:User = await this.user.newUserByGoogleAuth(
+           data.id
+         ) 
+
+         var profile = await this
          
        }
      }

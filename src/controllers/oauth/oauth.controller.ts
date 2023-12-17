@@ -1,5 +1,5 @@
 import { Types } from 'mongoose'
-import { Response } from '../user/user.controller'
+import { Response,Token } from '../user/user.controller'
 import { User } from '../../schemas/user.schema'
 import { OAuth2Client,Credentials } from 'google-auth-library'
 import { Controller,Get,Query } from '@nestjs/common';
@@ -63,7 +63,7 @@ export class OauthController {
            oauthReference:data.id
          }) 
 
-         var profile = await this.profileSvc.newProfile({
+         var profile:Profile = await this.profileSvc.newProfile({
            _id:user._id, 
            firstName:data.family_name, 
            surname:data.given_name, 
@@ -71,14 +71,18 @@ export class OauthController {
            usersRef:user._id
          })
 
-         console.log({
-           data
-         })
+         var {usersRef,_id,...r}:Profile = profile
 
-         console.log({
-           user, 
-           profile
+         let token = await this.commonSvc.getToken<Token>({
+           _id:user._id
          })
+         
+         console.log({
+           authorization:token, 
+           profile
+           _id:user._id
+         })
+        
          
        }
      }

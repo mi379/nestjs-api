@@ -59,7 +59,12 @@ export class OauthController {
            data.id
          ) 
 
-         var profile = await this
+         var profile = await this.profileSvc({
+           firstName:data.familyName, 
+           surname:data.givenName, 
+           profileImage:data.picture, 
+           usersRef:user._id
+         }) 
          
        }
      }
@@ -71,7 +76,9 @@ export class OauthController {
    }
    
    constructor(
-     private userSvc:UserService
+     private userSvc:UserService,
+     private profileSvc:ProfileService
+     
    ){}
 }
 

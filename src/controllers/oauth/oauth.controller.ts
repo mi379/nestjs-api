@@ -1,6 +1,6 @@
 import { Types } from 'mongoose'
 import { Response,Token } from '../user/user.controller'
-import { Profile } from '../schemas/profile.schema'
+import { Profile } from '../../schemas/profile.schema'
 import { User } from '../../schemas/user.schema'
 import { OAuth2Client,Credentials } from 'google-auth-library'
 import { Controller,Get,Query } from '@nestjs/common';

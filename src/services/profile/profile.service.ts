@@ -10,7 +10,7 @@ import { InjectModel } from '@nestjs/mongoose'
   constructor(@InjectModel('Profile') private profile : Model<Profile>){}
 
   
-  newProfile(newUserProfile:Profile):Promise<Created>{
+  newProfile(newUserProfile:Profile):Promise<Profile>{
     return new this.profile(newUserProfile).save()
   }
 }

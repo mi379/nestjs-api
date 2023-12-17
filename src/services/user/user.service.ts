@@ -158,10 +158,9 @@ import { JwtService } from '@nestjs/jwt';
   }
 }
 
-type Omited = Omit<Profile,"_id"|"usersRef">
 
 export type Detail = Pick<User,"_id"> & {
-  profile:Omited
+  profile:Omit<Profile,"_id"|"usersRef">
 }
 
 interface Oauth{

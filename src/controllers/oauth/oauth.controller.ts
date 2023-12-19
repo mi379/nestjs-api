@@ -99,7 +99,7 @@ export class OauthController {
      }
    }
 
-   @Post('facebook') async fbOAuth(@Body() dto:OauthDto):Promise<Response>{
+   @Post('facebook/signup') async signUpWithFacebook(@Body() dto:OauthDto):Promise<Response>{
      try{
        var [isExist] = await this.userSvc.findByOauthReference(
          dto.oauthReference

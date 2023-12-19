@@ -16,6 +16,7 @@ import { OauthController } from './controllers/oauth/oauth.controller'
 import { MessageController } from './controllers/message/message.controller';
 import { MessageService } from './services/message/message.service';
 import { CommonService } from './services/common/common.service';
+import { OAuthService } from './services/OAuth/OAuth.service.ts'
 import { EventsGateway } from './gateways/events/events.gateway';
 
 const environmentConfig = ConfigModule.forRoot()
@@ -82,6 +83,7 @@ const jwtConfig = JwtModule.register({
     ProfileService, 
     CommonService,
     EventsGateway,
+    OauthService
   ],
 })
 export class AppModule implements NestModule{

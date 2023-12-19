@@ -1,6 +1,6 @@
 import { IsNotEmpty } from 'class-validator'
 
-export class LoginDto{
+export class OauthDto{
   @IsNotEmpty() oauthReference:string
   
   @IsNotEmpty() profileImage:string
@@ -8,6 +8,4 @@ export class LoginDto{
   @IsNotEmpty() firstName:string
 
   @IsNotEmpty() surname : string
-
-  
 }

@@ -141,6 +141,7 @@ export class OauthController {
           _id:user._id, 
           profile:r
         }
+      }
      }
      catch(error:any){
        console.log(

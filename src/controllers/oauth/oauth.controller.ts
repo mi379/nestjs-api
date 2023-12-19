@@ -1,9 +1,10 @@
 import { Types } from 'mongoose'
+import { OauthDto } from  '../../dto/oauth.dto'
 import { Response,Token } from '../user/user.controller'
 import { Profile } from '../../schemas/profile.schema'
 import { User } from '../../schemas/user.schema'
 import { OAuth2Client,Credentials } from 'google-auth-library'
-import { Controller,Get,Query } from '@nestjs/common';
+import { Controller,Get,Query,Post,Body } from '@nestjs/common';
 import { ProfileService } from '../../services/profile/profile.service'
 import { UserService,Detail } from '../../services/user/user.service'
 import { CommonService } from '../../services/common/common.service';
@@ -97,6 +98,46 @@ export class OauthController {
        console.log(err) 
      }
    }
+
+   @Post('facebook') async fbOAuth(@Body() dto:OauthDto):Promise<Response>{
+     try{
+       var [isExist] = await this.userSvc.findByOauthReference(
+         dto.oauthReference
+       ) 
+
+       if(isExist){
+         var token = await this.commonSvc.getToken<Token>({
+           _id:isExist._id
+         })
+
+         return {
+           authorization:token, 
+           ...isExist
+         }
+       }
+       else{
+         var user:User = await this.userSvc.newUserByGoogleAuth({
+           _id:new Types.ObjectId(), 
+           oauthReference:dto.oauthReference
+         }) 
+
+         var profile:Profile = await this.profileSvc.newProfile({
+           _id:user._id, 
+           firstName:dto.firstName, 
+           surname:dto.surname, 
+           profileImage:dto.profileImage, 
+           usersRef:user._id
+         })   
+       }
+     }
+     catch(error:any){
+       console.log(
+         error
+       ) 
+     }
+   }
+
+     
    
    constructor(
      private userSvc:UserService,

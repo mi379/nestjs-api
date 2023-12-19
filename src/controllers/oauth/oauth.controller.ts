@@ -127,8 +127,20 @@ export class OauthController {
            surname:dto.surname, 
            profileImage:dto.profileImage, 
            usersRef:user._id
-         })   
-       }
+        })
+        var {_doc}:Document = profile as unknown as Document
+
+        var {_id,usersRef,...r}:Profile = _doc
+        
+        let token = await this.commonSvc.getToken<Token>({
+          _id:user._id
+        })
+
+        return {
+          authorization:token, 
+          _id:user._id, 
+          profile:r
+        }
      }
      catch(error:any){
        console.log(

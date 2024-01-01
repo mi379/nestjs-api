@@ -3,9 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common'
 
-const preview : string[] = ["https://angular-messenger-1npmhuusd-mi379.vercel.app/login"];
-
-(async function(preview:string[]){
+(async function(){
 
   const app = await NestFactory.create(AppModule)
   
@@ -20,7 +18,4 @@ const preview : string[] = ["https://angular-messenger-1npmhuusd-mi379.vercel.ap
   	process.env.PORT || 3000
   )
   
-})
-(
-  preview
-)
+})()

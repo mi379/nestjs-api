@@ -3,12 +3,25 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common'
 
-(async function(){
+function isRestricted(origin:string,callback:Callback){
+  var origins:string[] = [
+    'https://angular-messenger.vercel.app'
+  ]
+
+  if (origins.includes(origin){
+    callback(null,true)
+  }
+  else{
+    new Error('Restricted')
+  }
+}
+
+(async function(origins: string[]){
 
   const app = await NestFactory.create(AppModule)
   
   app.enableCors({
-    origin: '*',
+    origin: isRestricted,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
@@ -24,3 +37,5 @@ import { ValidationPipe } from '@nestjs/common'
   )
   
 })()
+
+type Callback = (result:null|Error,status?:boolean) => void

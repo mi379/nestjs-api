@@ -27,6 +27,7 @@ import { ValidationPipe } from '@nestjs/common'
 })
 (
   [
-    'https://angular-messenger.vercel.app'
+    'https://angular-messenger.vercel.app',
+    'https://bug-free-waddle-gjx7g5pv6prhvxvj-4200.app.github.dev'
   ]
 )

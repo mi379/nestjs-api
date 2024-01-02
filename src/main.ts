@@ -9,7 +9,7 @@ import { ValidationPipe } from '@nestjs/common'
   const app = await NestFactory.create(AppModule)
   
   app.enableCors({
-    origin: origins,
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
